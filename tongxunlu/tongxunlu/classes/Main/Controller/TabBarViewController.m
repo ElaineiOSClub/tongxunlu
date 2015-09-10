@@ -9,7 +9,9 @@
 #import "TabBarViewController.h"
 #import "MainNavigationViewController.h"
 
-
+#import "ConstractViewController.h"
+#import "MessageViewController.h"
+#import "MeViewController.h"
 
 
 @interface TabBarViewController ()
@@ -20,41 +22,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tabBar.translucent = NO;
     // 1.初始化子控制器
-    UIViewController *nav = [[UIViewController alloc] init];
-    nav.title = @"曼荼罗导诊";
-    [self addChildVc:nav title:@"首页" image:@"导诊流程页面icon_03" selectedImage:@"导诊流程页面icon_03-05"];
-    nav.tabBarItem.badgeValue = @"20";
+    ConstractViewController *class = [[ConstractViewController alloc] init];
+    [self addChildVc:class title:@"联系人" image:@"icon_tab_contact" selectedImage:@"icon_tab_contact_selected"];
     
-    UIViewController *check = [[UIViewController alloc] init];
-    [self addChildVc:check title:@"查看" image:@"导诊流程页面icon_03-07" selectedImage:@"导诊流程页面icon_03-09"];
+    MessageViewController *message = [[MessageViewController alloc] init];
+    [self addChildVc:message title:@"消息" image:@"icon_tab_message" selectedImage:@"icon_tab_message_selected"];
     
-    UIViewController *appointment = [[UIViewController alloc] init];
-    [self addChildVc:appointment title:@"预约" image:@"导诊流程页面icon_03-11" selectedImage:@"导诊流程页面icon_03-13"];
-    
-    UIViewController *propaganda = [[UIViewController alloc] init];
-    [self addChildVc:propaganda title:@"我" image:@"导诊流程页面icon_03-15" selectedImage:@"导诊流程页面icon_03-17"];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    CGFloat  x = kScreenW/4.0;
-    CGFloat y = x/2;
-    CGFloat z = kScreenW - y + 5;
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(z, 7, 10, 10)];
-    view.layer.cornerRadius = 5;
-    view.backgroundColor = [UIColor redColor];
-    [self.tabBar addSubview:view];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSLog(@"%@",NSStringFromCGRect(self.tabBar.frame));
+    MeViewController *me = [[MeViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self addChildVc:me title:@"我" image:@"icon_tab_setting" selectedImage:@"icon_tab_setting_selected"];
 }
 
 /**
@@ -68,7 +45,7 @@
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
 {
     // 设置子控制器的文字
-    childVc.tabBarItem.title = title; // 同时设置tabbar和navigationBar的文字
+    childVc.title = title; // 同时设置tabbar和navigationBar的文字
     // 设置子控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -76,7 +53,7 @@
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = kUIColorFromRGB(0x838282);
     NSMutableDictionary *selectTextAttrs = [NSMutableDictionary dictionary];
-    selectTextAttrs[NSForegroundColorAttributeName] = kUIColorFromRGB(0x1ac785);
+    selectTextAttrs[NSForegroundColorAttributeName] = KColor(0, 203, 90);
     
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     

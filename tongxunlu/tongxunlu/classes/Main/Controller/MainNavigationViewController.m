@@ -20,9 +20,8 @@
 + (void)initialize
 {
     UINavigationBar *navigationBar = [UINavigationBar appearance];
-    
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
-    navigationBar.barTintColor = [UIColor redColor];
+    navigationBar.translucent = NO;
+    NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
     
     [navigationBar setTitleTextAttributes:attributes];
     
