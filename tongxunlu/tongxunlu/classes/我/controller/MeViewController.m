@@ -11,6 +11,8 @@
 #import "MeModel.h"
 //退出
 #import "MeOutCell.h"
+//账号信息
+#import "AccountInfoViewController.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) NSArray *modelList;
@@ -105,6 +107,17 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            AccountInfoViewController *account = [[AccountInfoViewController alloc] init];
+            [self.navigationController pushViewController:account animated:YES];
+        }
+    }
+    
+}
 
 
 

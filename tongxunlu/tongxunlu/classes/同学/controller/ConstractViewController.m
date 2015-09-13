@@ -9,6 +9,8 @@
 #import "ConstractViewController.h"
 #import "ProvinceCell.h"
 
+#import "PersonViewController.h"
+
 static NSString *const cellID = @"cell";
 
 @interface ConstractViewController ()
@@ -54,6 +56,14 @@ static NSString *const cellID = @"cell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    PersonViewController *personVC = [[PersonViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:personVC animated:YES];
 }
 
 

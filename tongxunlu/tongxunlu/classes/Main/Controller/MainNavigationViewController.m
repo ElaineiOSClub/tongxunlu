@@ -20,7 +20,6 @@
 + (void)initialize
 {
     UINavigationBar *navigationBar = [UINavigationBar appearance];
-    navigationBar.translucent = NO;
     NSDictionary *attributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
     
     [navigationBar setTitleTextAttributes:attributes];
@@ -32,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.navigationBar setTranslucent:NO];
 }
 
 
@@ -43,7 +42,7 @@
         viewController.hidesBottomBarWhenPushed = YES;
         
         //设置返回按钮样式
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithTarget:self action:@selector(back) image:@"nav_left_normal" highImage:@"nav_left_high"];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithTarget:self action:@selector(back) image:@"icon_back_nomall" highImage:@"nav_left_high"];
    }
 //   else {
 //       //这里是导航栏下的根控制器
