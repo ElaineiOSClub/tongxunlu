@@ -7,6 +7,7 @@
 //
 
 #import "RegistersViewController.h"
+#import "NSString+Extension.h"
 
 @interface RegistersViewController ()<UITextFieldDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *A_AccountField;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *U_AdressField;
 @property (weak, nonatomic) IBOutlet UITextField *U_JobField;
 @property (weak, nonatomic) IBOutlet UITextField *U_QQField;
+@property (weak, nonatomic) IBOutlet UITextField *U_WeChatField;
 @property (weak, nonatomic) IBOutlet UITextField *U_EmailField;
 
 
@@ -193,12 +195,120 @@
             self.provincecityField.text = [NSString stringWithFormat:@"%@%@",provinceName,cityName];
             
         }
-        
-        
-        
-      
-        
     }
+}
+
+- (IBAction)registerClick:(id)sender {
+    //用户名不能为空
+    //1.创建正则表达式
+    NSString *pattern = @"^[a-zA-Z][a-zA-Z0-9_]{5,17}$";
+    
+    //先判断用户名
+    if (![self predicate:pattern withStr:self.A_AccountField.text]) {
+        [self alertWithStr:@"用户名必须6-18字符,字母开头,只能包含字母,数字,下划线"];
+        return;
+    }
+    pattern = @"^[a-zA-Z0-9_]{5,19}$";
+    //判断密码
+    if (![self predicate:pattern withStr:self.A_PasswordField.text]) {
+        [self alertWithStr:@"密码必须6-20字符,只能包含字母,数字,下划线"];
+        return;
+    }
+    
+    //判断姓名
+    if ([self.U_NameField.text containsStringWithios7:@" "] || [self.U_NameField.text isEqualToString:@""]) {
+        [self alertWithStr:@"姓名不能为空"];
+        return;
+    }
+    //性别
+    if ([self.U_SexField.text isEqualToString:@""]) {
+        [self alertWithStr:@"性别不能为空"];
+        return;
+    }
+    //生日
+    if ([self.U_BirthdayField.text isEqualToString:@""]) {
+        [self alertWithStr:@"生日不能为空"];
+        return;
+    }
+    //电话
+    pattern = @"^[0-9]{11}";
+    if (![self predicate:pattern withStr:self.U_PhoneField.text]) {
+        [self alertWithStr:@"请填写11位手机号"];
+        return;
+    }
+    //学校
+    if ([self.S_SchoolNameField.text containsStringWithios7:@" "] || [self.S_SchoolNameField.text isEqualToString:@""]) {
+        [self alertWithStr:@"学校不能为空"];
+        return;
+    }
+    //班级
+    if ([self.C_NameField.text containsStringWithios7:@" "] || [self.C_NameField.text isEqualToString:@""]) {
+        [self alertWithStr:@"班级不能为空"];
+        return;
+    }
+    //省市
+    if ([self.provincecityField.text isEqualToString:@""]) {
+        [self alertWithStr:@"省市不能为空"];
+        return;
+    }
+    //街道
+    if ([self.U_AdressField.text containsStringWithios7:@" "] || [self.U_AdressField.text isEqualToString:@""]) {
+        [self alertWithStr:@"街道地址不能为空"];
+        return;
+    }
+    //职业
+    if ([self.U_JobField.text containsStringWithios7:@" "] || [self.U_JobField.text isEqualToString:@""]) {
+        [self alertWithStr:@"职位不能为空"];
+        return;
+    }
+    //QQ
+    if ([self.U_QQField.text containsStringWithios7:@" "] || [self.U_QQField.text isEqualToString:@""]) {
+        [self alertWithStr:@"QQ不能为空"];
+        return;
+    }
+    //微信
+    if ( [self.U_WeChatField.text containsStringWithios7:@" "] || [self.U_WeChatField.text isEqualToString:@""]) {
+        [self alertWithStr:@"微信不能为空"];
+        return;
+    }
+    //邮箱
+    if (![self predicate:@"/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/" withStr:self.U_EmailField.text]) {
+        [self alertWithStr:@"请填写正确的邮箱"];
+        return;
+    }
+
+
+    
+    
+    
+}
+
+
+
+/**
+ *  验证用户信息
+ *
+ *  @param predicate 正则表达式
+ *  @param str       验证内容
+ *
+ *  @return bool
+ */
+- (BOOL)predicate:(NSString *)predicate withStr:(NSString *)str
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", predicate];
+    BOOL isMatch = [pred evaluateWithObject:str];
+    return isMatch;
+}
+
+/**
+ *  提示
+ *
+ *  @param str 内容
+ */
+- (void)alertWithStr:(NSString *)str
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:str message:@"" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 

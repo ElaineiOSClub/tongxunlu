@@ -9,8 +9,13 @@
 #import "LoginViewController.h"
 #import "RegistersViewController.h"
 #import "TabBarViewController.h"
-
+#import "NSString+Extension.h"
 @interface LoginViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *userNameField;
+
+@property (weak, nonatomic) IBOutlet UITextField *passWordField;
+
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
@@ -30,10 +35,48 @@
 }
 
 - (IBAction)loginClick:(id)sender {
-    TabBarViewController *tab = [[TabBarViewController alloc] init];
     
+    //用户名
+    if ([self.userNameField.text containsStringWithios7:@" "] || [self.userNameField.text isEqualToString:@""]) {
+        [self alertWithStr:@""];
+        return;
+    }
+    //密码
+    
+    
+    
+    
+    
+    TabBarViewController *tab = [[TabBarViewController alloc] init];
     self.view.window.rootViewController = tab;
 }
+
+/**
+ *  验证用户信息
+ *
+ *  @param predicate 正则表达式
+ *  @param str       验证内容
+ *
+ *  @return bool
+ */
+- (BOOL)predicate:(NSString *)predicate withStr:(NSString *)str
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", predicate];
+    BOOL isMatch = [pred evaluateWithObject:str];
+    return isMatch;
+}
+
+/**
+ *  提示
+ *
+ *  @param str 内容
+ */
+- (void)alertWithStr:(NSString *)str
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:str message:@"" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 
 
 

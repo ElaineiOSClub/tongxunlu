@@ -14,8 +14,9 @@
 //账号信息
 #import "AccountInfoViewController.h"
 
-@interface MeViewController ()
+@interface MeViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) NSArray *modelList;
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation MeViewController
@@ -42,14 +43,20 @@
     MeModel *accountInfo = [[MeModel alloc] init];
     accountInfo.text = @"账号信息";
     accountInfo.imageStr = @"icon_setting_profile";
-    accountInfo.classStr = @"";
+    accountInfo.classStr = @"AccountInfoViewController";
     
     MeModel *authorityInfo = [[MeModel alloc] init];
     authorityInfo.text = @"权限屏蔽";
     authorityInfo.imageStr = @"icon_setting_merge";
     authorityInfo.classStr = @"";
     
-    self.modelList = @[accountInfo,authorityInfo];
+    MeModel *ip = [[MeModel alloc] init];
+    ip.text = @"上传当前位置";
+    ip.imageStr = @"icon_setting_backup";
+    ip.classStr = @"";
+    
+    
+    self.modelList = @[accountInfo,authorityInfo,ip];
     
 
     
@@ -111,58 +118,49 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            AccountInfoViewController *account = [[AccountInfoViewController alloc] init];
-            [self.navigationController pushViewController:account animated:YES];
+        if (indexPath.row == 2) {//上传
+            
+            [self getIP];
+            
+        } else {
+            MeModel *model = self.modelList[indexPath.row];
+            Class class = NSClassFromString(model.classStr);
+            [self.navigationController pushViewController:[[class alloc] init] animated:YES];
         }
     }
+}
+
+- (void)getIP
+{
+    
+    _webView = [[UIWebView alloc] init];
+    _webView.delegate = self;
+    [self.view insertSubview:_webView atIndex:0];
+    
+    NSURL *url = [NSURL URLWithString:@"http://1111.ip138.com/ic.asp"];
+    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSString *requestStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName(\"center\")[0].innerHTML;"];
+    NSRange beginRange = [requestStr rangeOfString:@"["];
+    NSRange endRange = [requestStr rangeOfString:@"]"];
+    requestStr = [requestStr substringWithRange: NSMakeRange(beginRange.location + 1, endRange.location - beginRange.location - 1)];
+    //上传IP
+  
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+
     
 }
 
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

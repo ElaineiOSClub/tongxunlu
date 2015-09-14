@@ -22,6 +22,8 @@
 		B99A750B1BA579B500D00CF8 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A750A1BA579B500D00CF8 /* MessageCell.m */; };
 		B99A750E1BA5AE8A00D00CF8 /* MessageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A750D1BA5AE8A00D00CF8 /* MessageDetailController.m */; };
 		B99A75111BA5B15A00D00CF8 /* MessageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75101BA5B15A00D00CF8 /* MessageDetailCell.m */; };
+		B99A75151BA78D5100D00CF8 /* MeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75131BA78D5100D00CF8 /* MeEditViewController.m */; };
+		B99A75161BA78D5100D00CF8 /* MeEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */; };
 		B9A1CC811B9F9C4B00C43B7C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */; };
 		B9A1CC821B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC181B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m */; };
 		B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC1A1B9F9C4B00C43B7C /* UIView+Extension.m */; };
@@ -114,6 +116,9 @@
 		B99A750D1BA5AE8A00D00CF8 /* MessageDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailController.m; sourceTree = "<group>"; };
 		B99A750F1BA5B15A00D00CF8 /* MessageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailCell.h; sourceTree = "<group>"; };
 		B99A75101BA5B15A00D00CF8 /* MessageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailCell.m; sourceTree = "<group>"; };
+		B99A75121BA78D5100D00CF8 /* MeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeEditViewController.h; sourceTree = "<group>"; };
+		B99A75131BA78D5100D00CF8 /* MeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeEditViewController.m; sourceTree = "<group>"; };
+		B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeEditViewController.xib; sourceTree = "<group>"; };
 		B9A1CC151B9F9C4B00C43B7C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		B9A1CC171B9F9C4B00C43B7C /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -570,6 +575,9 @@
 				B9A1CCC51BA06D6D00C43B7C /* MeViewController.m */,
 				B99A75061BA56E6B00D00CF8 /* AccountInfoViewController.h */,
 				B99A75071BA56E6B00D00CF8 /* AccountInfoViewController.m */,
+				B99A75121BA78D5100D00CF8 /* MeEditViewController.h */,
+				B99A75131BA78D5100D00CF8 /* MeEditViewController.m */,
+				B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -747,6 +755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99A75161BA78D5100D00CF8 /* MeEditViewController.xib in Resources */,
 				B9A1CCD71BA1D0A400C43B7C /* LoginViewController.xib in Resources */,
 				B92C07BA1B9F288400B4F5E6 /* Main.storyboard in Resources */,
 				B99A74FF1BA5403B00D00CF8 /* city.plist in Resources */,
@@ -807,6 +816,7 @@
 				B9A1CC921B9F9C4B00C43B7C /* MJFoundation.m in Sources */,
 				B99A75051BA5676500D00CF8 /* PersonInfoCell.m in Sources */,
 				B9A1CC9B1B9F9C4B00C43B7C /* SDImageCache.m in Sources */,
+				B99A75151BA78D5100D00CF8 /* MeEditViewController.m in Sources */,
 				B9A1CC851B9F9C4B00C43B7C /* MainNavigationViewController.m in Sources */,
 				B9A1CCA01B9F9C4B00C43B7C /* SDWebImageManager.m in Sources */,
 				B9A1CCA51B9F9C4B00C43B7C /* UIImage+WebP.m in Sources */,
