@@ -35,6 +35,9 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <state key="selected" backgroundImage="icon_contact_edit_checked"/>
+                        <connections>
+                            <action selector="btnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DoV-pk-GNi"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

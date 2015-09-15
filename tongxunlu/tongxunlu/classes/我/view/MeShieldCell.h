@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MeShieldCell;
+
+@protocol MeShieldCellDelegate <NSObject>
+
+- (void)meShieldCell:(MeShieldCell *)cell btnClick:(UIButton *)button indexPath:(NSIndexPath *)indexPath;
+
+@end
 
 @interface MeShieldCell : UITableViewCell
-
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak) id<MeShieldCellDelegate> delegate;
 @end

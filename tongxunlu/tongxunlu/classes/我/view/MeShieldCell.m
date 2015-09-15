@@ -17,8 +17,13 @@
 @implementation MeShieldCell
 
 - (void)awakeFromNib {
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+- (IBAction)btnClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(meShieldCell:btnClick:indexPath:)]) {
+        [self.delegate meShieldCell:self btnClick:sender indexPath:self.indexPath];
+    }
+}
 
 @end
