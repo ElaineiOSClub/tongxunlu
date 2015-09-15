@@ -24,6 +24,9 @@
 		B99A75111BA5B15A00D00CF8 /* MessageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75101BA5B15A00D00CF8 /* MessageDetailCell.m */; };
 		B99A75151BA78D5100D00CF8 /* MeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75131BA78D5100D00CF8 /* MeEditViewController.m */; };
 		B99A75161BA78D5100D00CF8 /* MeEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */; };
+		B99A75191BA84C4000D00CF8 /* MeShieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75181BA84C4000D00CF8 /* MeShieldViewController.m */; };
+		B99A75201BA84F8900D00CF8 /* MeShieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A751E1BA84F8900D00CF8 /* MeShieldCell.m */; };
+		B99A75211BA84F8900D00CF8 /* MeShieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99A751F1BA84F8900D00CF8 /* MeShieldCell.xib */; };
 		B9A1CC811B9F9C4B00C43B7C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */; };
 		B9A1CC821B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC181B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m */; };
 		B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC1A1B9F9C4B00C43B7C /* UIView+Extension.m */; };
@@ -119,6 +122,11 @@
 		B99A75121BA78D5100D00CF8 /* MeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeEditViewController.h; sourceTree = "<group>"; };
 		B99A75131BA78D5100D00CF8 /* MeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeEditViewController.m; sourceTree = "<group>"; };
 		B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeEditViewController.xib; sourceTree = "<group>"; };
+		B99A75171BA84C4000D00CF8 /* MeShieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeShieldViewController.h; sourceTree = "<group>"; };
+		B99A75181BA84C4000D00CF8 /* MeShieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeShieldViewController.m; sourceTree = "<group>"; };
+		B99A751D1BA84F8900D00CF8 /* MeShieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeShieldCell.h; sourceTree = "<group>"; };
+		B99A751E1BA84F8900D00CF8 /* MeShieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeShieldCell.m; sourceTree = "<group>"; };
+		B99A751F1BA84F8900D00CF8 /* MeShieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeShieldCell.xib; sourceTree = "<group>"; };
 		B9A1CC151B9F9C4B00C43B7C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		B9A1CC171B9F9C4B00C43B7C /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -578,6 +586,8 @@
 				B99A75121BA78D5100D00CF8 /* MeEditViewController.h */,
 				B99A75131BA78D5100D00CF8 /* MeEditViewController.m */,
 				B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */,
+				B99A75171BA84C4000D00CF8 /* MeShieldViewController.h */,
+				B99A75181BA84C4000D00CF8 /* MeShieldViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -596,6 +606,9 @@
 			children = (
 				B9A1CCD01BA1C24C00C43B7C /* MeOutCell.h */,
 				B9A1CCD11BA1C24C00C43B7C /* MeOutCell.m */,
+				B99A751D1BA84F8900D00CF8 /* MeShieldCell.h */,
+				B99A751E1BA84F8900D00CF8 /* MeShieldCell.m */,
+				B99A751F1BA84F8900D00CF8 /* MeShieldCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -756,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B99A75161BA78D5100D00CF8 /* MeEditViewController.xib in Resources */,
+				B99A75211BA84F8900D00CF8 /* MeShieldCell.xib in Resources */,
 				B9A1CCD71BA1D0A400C43B7C /* LoginViewController.xib in Resources */,
 				B92C07BA1B9F288400B4F5E6 /* Main.storyboard in Resources */,
 				B99A74FF1BA5403B00D00CF8 /* city.plist in Resources */,
@@ -787,6 +801,7 @@
 				B99A750E1BA5AE8A00D00CF8 /* MessageDetailController.m in Sources */,
 				B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */,
 				B99A75021BA563A400D00CF8 /* PersonViewController.m in Sources */,
+				B99A75191BA84C4000D00CF8 /* MeShieldViewController.m in Sources */,
 				B9A1CC8A1B9F9C4B00C43B7C /* AFNetworkReachabilityManager.m in Sources */,
 				B9A1CCC31BA06D3B00C43B7C /* ConstractViewController.m in Sources */,
 				B9A1CC941B9F9C4B00C43B7C /* MJType.m in Sources */,
@@ -799,6 +814,7 @@
 				B9A1CC901B9F9C4B00C43B7C /* MBProgressHUD.m in Sources */,
 				B9A1CC8D1B9F9C4B00C43B7C /* AFURLRequestSerialization.m in Sources */,
 				B9A1CCC61BA06D6D00C43B7C /* MeViewController.m in Sources */,
+				B99A75201BA84F8900D00CF8 /* MeShieldCell.m in Sources */,
 				B92C07B71B9F288400B4F5E6 /* ViewController.m in Sources */,
 				B9A1CCA41B9F9C4B00C43B7C /* UIImage+MultiFormat.m in Sources */,
 				B9A1CC8F1B9F9C4B00C43B7C /* AFURLSessionManager.m in Sources */,

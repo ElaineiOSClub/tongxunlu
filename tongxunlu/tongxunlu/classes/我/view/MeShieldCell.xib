@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MeShieldCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A班" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqM-9m-bDo">
+                        <rect key="frame" x="18" y="11" width="27" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1gv-WJ-HTI"/>
+                            <constraint firstAttribute="width" priority="250" constant="24" id="3fU-8E-Esd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-p6-aKW">
+                        <rect key="frame" x="273" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="0i8-Es-Qey"/>
+                            <constraint firstAttribute="width" constant="22" id="xdg-M1-j5X"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="icon_contact_edit_uncheck">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" backgroundImage="icon_contact_edit_checked"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="2Ef-p6-aKW" secondAttribute="centerY" id="WDV-gi-vvT"/>
+                    <constraint firstItem="RqM-9m-bDo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="aiX-zl-hOG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2Ef-p6-aKW" secondAttribute="trailing" constant="17" id="gLA-Zj-dhq"/>
+                    <constraint firstAttribute="centerY" secondItem="RqM-9m-bDo" secondAttribute="centerY" id="rGx-iD-GN7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn" destination="2Ef-p6-aKW" id="AoN-gH-SeG"/>
+                <outlet property="classLabel" destination="RqM-9m-bDo" id="eUt-IZ-kSg"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_contact_edit_checked" width="22" height="22"/>
+        <image name="icon_contact_edit_uncheck" width="22" height="22"/>
+    </resources>
+</document>
