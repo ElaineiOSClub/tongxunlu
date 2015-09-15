@@ -13,6 +13,8 @@
 #import "MeOutCell.h"
 //账号信息
 #import "AccountInfoViewController.h"
+//屏蔽信息
+#import "MeShieldViewController.h"
 
 @interface MeViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) NSArray *modelList;
@@ -48,7 +50,7 @@
     MeModel *authorityInfo = [[MeModel alloc] init];
     authorityInfo.text = @"权限屏蔽";
     authorityInfo.imageStr = @"icon_setting_merge";
-    authorityInfo.classStr = @"";
+    authorityInfo.classStr = @"MeShieldViewController";
     
     MeModel *ip = [[MeModel alloc] init];
     ip.text = @"上传当前位置";

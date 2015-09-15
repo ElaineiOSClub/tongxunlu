@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-p6-aKW">
-                        <rect key="frame" x="273" y="11" width="22" height="22"/>
+                        <rect key="frame" x="278" y="11" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="0i8-Es-Qey"/>
                             <constraint firstAttribute="width" constant="22" id="xdg-M1-j5X"/>
@@ -40,7 +40,7 @@
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="2Ef-p6-aKW" secondAttribute="centerY" id="WDV-gi-vvT"/>
                     <constraint firstItem="RqM-9m-bDo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="aiX-zl-hOG"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="2Ef-p6-aKW" secondAttribute="trailing" constant="17" id="gLA-Zj-dhq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2Ef-p6-aKW" secondAttribute="trailing" constant="12" id="gLA-Zj-dhq"/>
                     <constraint firstAttribute="centerY" secondItem="RqM-9m-bDo" secondAttribute="centerY" id="rGx-iD-GN7"/>
                 </constraints>
             </tableViewCellContentView>

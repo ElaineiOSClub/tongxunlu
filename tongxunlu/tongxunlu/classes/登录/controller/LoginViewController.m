@@ -38,11 +38,14 @@
     
     //用户名
     if ([self.userNameField.text containsStringWithios7:@" "] || [self.userNameField.text isEqualToString:@""]) {
-        [self alertWithStr:@""];
+        [self alertWithStr:@"用户名不能为空"];
         return;
     }
     //密码
-    
+    if ([self.passWordField.text containsStringWithios7:@" "] || [self.passWordField.text isEqualToString:@""]) {
+        [self alertWithStr:@"密码不能为空"];
+        return;
+    }
     
     
     
