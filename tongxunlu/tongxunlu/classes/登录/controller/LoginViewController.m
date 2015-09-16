@@ -10,6 +10,8 @@
 #import "RegistersViewController.h"
 #import "TabBarViewController.h"
 #import "NSString+Extension.h"
+#import "HttpTool.h"
+
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
@@ -47,11 +49,23 @@
         return;
     }
     
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/UserService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"Login",@"Account":self.userNameField.text,@"Password":self.passWordField.text } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        MLog(@"%@",responseObject);
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MLog(@"%@",operation.responseString);
+        MLog(@"%@",error);
+    }];
     
     
     
-    TabBarViewController *tab = [[TabBarViewController alloc] init];
-    self.view.window.rootViewController = tab;
+    
+    
+//    TabBarViewController *tab = [[TabBarViewController alloc] init];
+//    self.view.window.rootViewController = tab;
 }
 
 /**

@@ -27,6 +27,8 @@
 		B99A75191BA84C4000D00CF8 /* MeShieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75181BA84C4000D00CF8 /* MeShieldViewController.m */; };
 		B99A75201BA84F8900D00CF8 /* MeShieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A751E1BA84F8900D00CF8 /* MeShieldCell.m */; };
 		B99A75211BA84F8900D00CF8 /* MeShieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99A751F1BA84F8900D00CF8 /* MeShieldCell.xib */; };
+		B99A75241BA9BDC500D00CF8 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75231BA9BDC500D00CF8 /* AccountTool.m */; };
+		B99A75271BA9BDD600D00CF8 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75261BA9BDD600D00CF8 /* Account.m */; };
 		B9A1CC811B9F9C4B00C43B7C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */; };
 		B9A1CC821B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC181B9F9C4B00C43B7C /* UIBarButtonItem+Extension.m */; };
 		B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CC1A1B9F9C4B00C43B7C /* UIView+Extension.m */; };
@@ -127,6 +129,10 @@
 		B99A751D1BA84F8900D00CF8 /* MeShieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeShieldCell.h; sourceTree = "<group>"; };
 		B99A751E1BA84F8900D00CF8 /* MeShieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeShieldCell.m; sourceTree = "<group>"; };
 		B99A751F1BA84F8900D00CF8 /* MeShieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeShieldCell.xib; sourceTree = "<group>"; };
+		B99A75221BA9BDC500D00CF8 /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
+		B99A75231BA9BDC500D00CF8 /* AccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTool.m; sourceTree = "<group>"; };
+		B99A75251BA9BDD600D00CF8 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		B99A75261BA9BDD600D00CF8 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		B9A1CC151B9F9C4B00C43B7C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		B9A1CC161B9F9C4B00C43B7C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		B9A1CC171B9F9C4B00C43B7C /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -351,6 +357,8 @@
 		B9A1CC111B9F374800C43B7C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B99A75251BA9BDD600D00CF8 /* Account.h */,
+				B99A75261BA9BDD600D00CF8 /* Account.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -511,6 +519,8 @@
 		B9A1CC7E1B9F9C4B00C43B7C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				B99A75221BA9BDC500D00CF8 /* AccountTool.h */,
+				B99A75231BA9BDC500D00CF8 /* AccountTool.m */,
 				B9A1CC7F1B9F9C4B00C43B7C /* HttpTool.h */,
 				B9A1CC801B9F9C4B00C43B7C /* HttpTool.m */,
 			);
@@ -823,6 +833,7 @@
 				B99A75081BA56E6B00D00CF8 /* AccountInfoViewController.m in Sources */,
 				B9A1CCA21B9F9C4B00C43B7C /* UIButton+WebCache.m in Sources */,
 				B9A1CCAF1B9F9C4B00C43B7C /* HttpTool.m in Sources */,
+				B99A75241BA9BDC500D00CF8 /* AccountTool.m in Sources */,
 				B9A1CCA31B9F9C4B00C43B7C /* UIImage+GIF.m in Sources */,
 				B9A1CC961B9F9C4B00C43B7C /* NSObject+MJKeyValue.m in Sources */,
 				B9A1CC881B9F9C4B00C43B7C /* AFHTTPRequestOperationManager.m in Sources */,
@@ -842,6 +853,7 @@
 				B9A1CC811B9F9C4B00C43B7C /* NSString+Extension.m in Sources */,
 				B9A1CC951B9F9C4B00C43B7C /* NSObject+MJCoding.m in Sources */,
 				B9A1CC861B9F9C4B00C43B7C /* TabBarViewController.m in Sources */,
+				B99A75271BA9BDD600D00CF8 /* Account.m in Sources */,
 				B9A1CCA71B9F9C4B00C43B7C /* UIImageView+WebCache.m in Sources */,
 				B9A1CC9E1B9F9C4B00C43B7C /* SDWebImageDownloader.m in Sources */,
 				B9A1CCD61BA1D0A400C43B7C /* LoginViewController.m in Sources */,
