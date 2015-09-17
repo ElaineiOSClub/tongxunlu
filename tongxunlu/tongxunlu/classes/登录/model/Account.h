@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface Account : NSObject<NSCoding>
-@property (nonatomic, copy) NSString *token;
-@property (nonatomic, copy) NSString *uid;
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, copy) NSString *cookie;
-@property (nonatomic, copy) NSString *imageStr;
+@property (nonatomic, copy) NSString *Token;
+@property (nonatomic, copy) NSString *U_Adress;
+@property (nonatomic, copy) NSString *U_Birthday;
+@property (nonatomic, copy) NSString *U_City;
+@property (nonatomic, copy) NSString *U_Class;
+@property (nonatomic, copy) NSString *U_CurrentAdress;
+@property (nonatomic, copy) NSString *U_Email;
+@property (nonatomic, copy) NSString *U_Id;
+@property (nonatomic, copy) NSString *U_Job;
+@property (nonatomic, copy) NSString *U_Name;
+@property (nonatomic, copy) NSString *U_Phone;
+@property (nonatomic, copy) NSString *U_Province;
+@property (nonatomic, copy) NSString *U_QQ;
+@property (nonatomic, copy) NSString *U_Sex;
+@property (nonatomic, copy) NSString *U_Sign;
+@property (nonatomic, copy) NSString *U_WeChat;
 @end

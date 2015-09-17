@@ -52,6 +52,11 @@ static AccountTool *_instance;
     
 }
 
+- (void)deleteAccount
+{
+    [[NSFileManager defaultManager] removeItemAtPath:kFile error:nil];
+}
+
 
 
 @end

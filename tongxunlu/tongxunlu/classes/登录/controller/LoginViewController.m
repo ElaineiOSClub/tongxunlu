@@ -11,8 +11,14 @@
 #import "TabBarViewController.h"
 #import "NSString+Extension.h"
 #import "HttpTool.h"
+#import "MBProgressHUD.h"
+#import "AccountTool.h"
+#import "MJExtension.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
 
@@ -49,12 +55,27 @@
         return;
     }
     
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"正在登陆";
+    [HUD show:YES];
+
+    
+    
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/UserService.ashx",KUrl];
     [HttpTool httpToolPost:urlStr parameters:@{@"action":@"Login",@"Account":self.userNameField.text,@"Password":self.passWordField.text } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         MLog(@"%@",responseObject);
-
+        Account *account = [Account objectWithKeyValues:responseObject[0]];
         
+        [[AccountTool shareAccount] saveAccount:account];
+        
+        
+
+        [HUD hide:YES];
+        TabBarViewController *tab = [[TabBarViewController alloc] init];
+        self.view.window.rootViewController = tab;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MLog(@"%@",operation.responseString);
         MLog(@"%@",error);
@@ -64,8 +85,14 @@
     
     
     
-//    TabBarViewController *tab = [[TabBarViewController alloc] init];
-//    self.view.window.rootViewController = tab;
+
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [hud removeFromSuperview];
+    hud = nil;
 }
 
 /**

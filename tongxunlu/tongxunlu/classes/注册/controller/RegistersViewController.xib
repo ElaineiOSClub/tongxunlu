@@ -16,7 +16,7 @@
                 <outlet property="U_EmailField" destination="eqt-ni-SOM" id="TSz-iz-hpm"/>
                 <outlet property="U_JobField" destination="3hw-r6-tuA" id="A7p-9G-oKl"/>
                 <outlet property="U_NameField" destination="ZOM-JV-O4h" id="H7e-0D-FWD"/>
-                <outlet property="U_PhoneField" destination="M03-PJ-62v" id="aEm-nV-qS6"/>
+                <outlet property="U_PhoneField" destination="tB2-bn-LYx" id="NEI-lY-G9V"/>
                 <outlet property="U_QQField" destination="AIT-LE-bHh" id="EVw-5S-Qng"/>
                 <outlet property="U_SexField" destination="whc-zy-fGu" id="bZn-db-9TG"/>
                 <outlet property="U_WeChatField" destination="XKq-3Z-x54" id="Iob-Px-pRr"/>
@@ -217,7 +217,7 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="学校" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-kR-xmc">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="武冈二中" placeholder="学校" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-kR-xmc">
                                     <rect key="frame" x="130" y="364" width="441" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="65A-VM-iCC"/>

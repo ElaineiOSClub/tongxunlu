@@ -1,50 +1,47 @@
 //
-//  ProvinceCell.m
+//  CityCell.m
 //  tongxunlu
 //
-//  Created by elaine on 15/9/9.
+//  Created by elaine on 15/9/17.
 //  Copyright (c) 2015年 sancaikeji. All rights reserved.
 //
 
-#import "ProvinceCell.h"
-#import "ConstractProvinceModel.h"
+#import "CityCell.h"
+#import "ConstractCityModel.h"
 
-@interface ProvinceCell()
-@property (nonatomic, strong) UILabel *provinceTextLabel;
+@interface CityCell()
+@property (nonatomic, strong) UILabel *cityTextLabel;
 @property (nonatomic, strong) UIButton *numberTextBtn;
 @end
 
-@implementation ProvinceCell
+@implementation CityCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [self.contentView addSubview:self.provinceTextLabel];
+        [self.contentView addSubview:self.cityTextLabel];
         
         [self.contentView addSubview:self.numberTextBtn];
     }
     return self;
 }
 
-
-- (void)setModel:(ConstractProvinceModel *)model
+- (void)setModel:(ConstractCityModel *)model
 {
     _model = model;
-    self.provinceTextLabel.text = model.ProvinceName;
+    self.cityTextLabel.text = model.CityName;
     [self.numberTextBtn setTitle:[NSString stringWithFormat:@"%ld",model.UserNum] forState:UIControlStateNormal];
-    
 }
-
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    [self.provinceTextLabel sizeToFit];
+    [self.cityTextLabel sizeToFit];
     
-    self.provinceTextLabel.centerY = self.height/2;
-    self.provinceTextLabel.x = 20;
+    self.cityTextLabel.centerY = self.height/2;
+    self.cityTextLabel.x = 20;
     
     
     self.numberTextBtn.centerY = self.height/2;
@@ -54,16 +51,16 @@
 }
 
 #pragma mark - lazy
-- (UILabel *)provinceTextLabel
+- (UILabel *)cityTextLabel
 {
-    if (!_provinceTextLabel) {
-        _provinceTextLabel = [[UILabel alloc] init];
-        _provinceTextLabel.numberOfLines = 1;
-        _provinceTextLabel.font = [UIFont systemFontOfSize:16];
-        _provinceTextLabel.textColor = [UIColor blackColor];
-        _provinceTextLabel.text = @"湖南省";
+    if (!_cityTextLabel) {
+        _cityTextLabel = [[UILabel alloc] init];
+        _cityTextLabel.numberOfLines = 1;
+        _cityTextLabel.font = [UIFont systemFontOfSize:16];
+        _cityTextLabel.textColor = [UIColor blackColor];
+        _cityTextLabel.text = @"湖南省";
     }
-    return _provinceTextLabel;
+    return _cityTextLabel;
 }
 
 - (UIButton *)numberTextBtn
@@ -76,12 +73,10 @@
         [_numberTextBtn setBackgroundImage:[UIImage imageNamed:@"Slice 1"] forState:UIControlStateNormal];
         _numberTextBtn.size = _numberTextBtn.currentBackgroundImage.size;
         MLog(@"%@",NSStringFromCGSize(_numberTextBtn.size));
-       // _numberTextBtn.enabled = NO;
+        // _numberTextBtn.enabled = NO;
         _numberTextBtn.userInteractionEnabled = NO;
     }
     return _numberTextBtn;
 }
-
-
 
 @end

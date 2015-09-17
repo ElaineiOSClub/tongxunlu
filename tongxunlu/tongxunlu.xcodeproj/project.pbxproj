@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B905FBD11BAAFF5900A16AF1 /* ConstractProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B905FBD01BAAFF5900A16AF1 /* ConstractProvinceModel.m */; };
+		B905FBD41BAAFFC400A16AF1 /* ConstractCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B905FBD31BAAFFC400A16AF1 /* ConstractCityViewController.m */; };
+		B905FBD71BAAFFFD00A16AF1 /* CityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B905FBD61BAAFFFD00A16AF1 /* CityCell.m */; };
+		B905FBDA1BAB1A3300A16AF1 /* ConstractCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B905FBD91BAB1A3300A16AF1 /* ConstractCityModel.m */; };
 		B92C07B11B9F288400B4F5E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B92C07B01B9F288400B4F5E6 /* main.m */; };
 		B92C07B41B9F288400B4F5E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B92C07B31B9F288400B4F5E6 /* AppDelegate.m */; };
 		B92C07B71B9F288400B4F5E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92C07B61B9F288400B4F5E6 /* ViewController.m */; };
@@ -94,6 +98,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B905FBCF1BAAFF5900A16AF1 /* ConstractProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstractProvinceModel.h; sourceTree = "<group>"; };
+		B905FBD01BAAFF5900A16AF1 /* ConstractProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstractProvinceModel.m; sourceTree = "<group>"; };
+		B905FBD21BAAFFC400A16AF1 /* ConstractCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstractCityViewController.h; sourceTree = "<group>"; };
+		B905FBD31BAAFFC400A16AF1 /* ConstractCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstractCityViewController.m; sourceTree = "<group>"; };
+		B905FBD51BAAFFFD00A16AF1 /* CityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCell.h; sourceTree = "<group>"; };
+		B905FBD61BAAFFFD00A16AF1 /* CityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCell.m; sourceTree = "<group>"; };
+		B905FBD81BAB1A3300A16AF1 /* ConstractCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstractCityModel.h; sourceTree = "<group>"; };
+		B905FBD91BAB1A3300A16AF1 /* ConstractCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstractCityModel.m; sourceTree = "<group>"; };
 		B92C07AB1B9F288400B4F5E6 /* tongxunlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongxunlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92C07AF1B9F288400B4F5E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B92C07B01B9F288400B4F5E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -554,6 +566,8 @@
 				B9A1CCC21BA06D3B00C43B7C /* ConstractViewController.m */,
 				B99A75001BA563A400D00CF8 /* PersonViewController.h */,
 				B99A75011BA563A400D00CF8 /* PersonViewController.m */,
+				B905FBD21BAAFFC400A16AF1 /* ConstractCityViewController.h */,
+				B905FBD31BAAFFC400A16AF1 /* ConstractCityViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -561,6 +575,10 @@
 		B9A1CCB71BA068FF00C43B7C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B905FBCF1BAAFF5900A16AF1 /* ConstractProvinceModel.h */,
+				B905FBD01BAAFF5900A16AF1 /* ConstractProvinceModel.m */,
+				B905FBD81BAB1A3300A16AF1 /* ConstractCityModel.h */,
+				B905FBD91BAB1A3300A16AF1 /* ConstractCityModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -572,6 +590,8 @@
 				B9A1CCCB1BA06F6F00C43B7C /* ProvinceCell.m */,
 				B99A75031BA5676500D00CF8 /* PersonInfoCell.h */,
 				B99A75041BA5676500D00CF8 /* PersonInfoCell.m */,
+				B905FBD51BAAFFFD00A16AF1 /* CityCell.h */,
+				B905FBD61BAAFFFD00A16AF1 /* CityCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -807,6 +827,7 @@
 				B9A1CCCF1BA1BC6800C43B7C /* MeModel.m in Sources */,
 				B9A1CCB31B9F9D8500C43B7C /* ConstH.m in Sources */,
 				B9A1CCA81B9F9C4B00C43B7C /* UIView+WebCacheOperation.m in Sources */,
+				B905FBD41BAAFFC400A16AF1 /* ConstractCityViewController.m in Sources */,
 				B9A1CC8B1B9F9C4B00C43B7C /* AFSecurityPolicy.m in Sources */,
 				B99A750E1BA5AE8A00D00CF8 /* MessageDetailController.m in Sources */,
 				B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */,
@@ -822,12 +843,14 @@
 				B9A1CC9F1B9F9C4B00C43B7C /* SDWebImageDownloaderOperation.m in Sources */,
 				B9A1CCA11B9F9C4B00C43B7C /* SDWebImagePrefetcher.m in Sources */,
 				B9A1CC901B9F9C4B00C43B7C /* MBProgressHUD.m in Sources */,
+				B905FBD11BAAFF5900A16AF1 /* ConstractProvinceModel.m in Sources */,
 				B9A1CC8D1B9F9C4B00C43B7C /* AFURLRequestSerialization.m in Sources */,
 				B9A1CCC61BA06D6D00C43B7C /* MeViewController.m in Sources */,
 				B99A75201BA84F8900D00CF8 /* MeShieldCell.m in Sources */,
 				B92C07B71B9F288400B4F5E6 /* ViewController.m in Sources */,
 				B9A1CCA41B9F9C4B00C43B7C /* UIImage+MultiFormat.m in Sources */,
 				B9A1CC8F1B9F9C4B00C43B7C /* AFURLSessionManager.m in Sources */,
+				B905FBDA1BAB1A3300A16AF1 /* ConstractCityModel.m in Sources */,
 				B92C07B41B9F288400B4F5E6 /* AppDelegate.m in Sources */,
 				B99A75111BA5B15A00D00CF8 /* MessageDetailCell.m in Sources */,
 				B99A75081BA56E6B00D00CF8 /* AccountInfoViewController.m in Sources */,
@@ -852,6 +875,7 @@
 				B9A1CC911B9F9C4B00C43B7C /* MJExtensionConst.m in Sources */,
 				B9A1CC811B9F9C4B00C43B7C /* NSString+Extension.m in Sources */,
 				B9A1CC951B9F9C4B00C43B7C /* NSObject+MJCoding.m in Sources */,
+				B905FBD71BAAFFFD00A16AF1 /* CityCell.m in Sources */,
 				B9A1CC861B9F9C4B00C43B7C /* TabBarViewController.m in Sources */,
 				B99A75271BA9BDD600D00CF8 /* Account.m in Sources */,
 				B9A1CCA71B9F9C4B00C43B7C /* UIImageView+WebCache.m in Sources */,

@@ -8,14 +8,19 @@
 
 #import "RegistersViewController.h"
 #import "NSString+Extension.h"
+#import "HttpTool.h"
+#import "MBProgressHUD.h"
 
-@interface RegistersViewController ()<UITextFieldDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface RegistersViewController ()<UITextFieldDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
 @property (weak, nonatomic) IBOutlet UITextField *A_AccountField;
 @property (weak, nonatomic) IBOutlet UITextField *A_PasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *U_NameField;
 @property (weak, nonatomic) IBOutlet UITextField *U_SexField;
 @property (weak, nonatomic) IBOutlet UITextField *U_BirthdayField;
-@property (weak, nonatomic) IBOutlet UILabel *U_PhoneField;
+@property (weak, nonatomic) IBOutlet UITextField *U_PhoneField;
 @property (weak, nonatomic) IBOutlet UITextField *S_SchoolNameField;
 @property (weak, nonatomic) IBOutlet UITextField *C_NameField;
 @property (weak, nonatomic) IBOutlet UITextField *provincecityField;
@@ -35,6 +40,7 @@
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) UIPickerView *sexPicker;
 @property (nonatomic, strong) UIPickerView *cityPicker;
+@property (nonatomic, strong) UIPickerView *classPicker;
 
 //选中的textField
 @property (nonatomic, strong) UITextField *selectField;
@@ -43,6 +49,11 @@
 //省市数据
 @property (nonatomic, strong) NSArray *provinceList;
 @property (nonatomic, strong) NSArray *cityList;
+@property (nonatomic, copy) NSString *provinceID;
+@property (nonatomic, copy) NSString *cityID;
+//班级数据
+@property (nonatomic, strong) NSArray *classList;
+@property (nonatomic, copy) NSString *classID;//选择的班级ID
 
 @end
 
@@ -54,6 +65,7 @@
     self.U_BirthdayField.inputView = self.datePicker;
     self.U_SexField.inputView = self.sexPicker;
     self.provincecityField.inputView = self.cityPicker;
+    self.C_NameField.inputView = self.classPicker;
     
     self.registerBtn.layer.cornerRadius = 4;
 
@@ -110,12 +122,37 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    //判断是否注册：action=Check&Account=账户参数
+    //允许注册返回 {\"CheckMes\":\"yes\"} 已注册返回{\"CheckMes\":\"no\"}
+    
+    if (textField != self.A_AccountField) {
+        return;
+    }
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/UserService.ashx",KUrl];
+    
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"Check",@"Account":textField.text} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject[@"CheckMes"] isEqualToString:@"no"]) {
+            [self alertWithStr:@"用户名已存在"];
+            [textField becomeFirstResponder];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+}
+
 
 #pragma mark - UIPickerDelegate
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     if (pickerView == self.sexPicker) {
+        return 1;
+    } else if(pickerView == self.classPicker) {
         return 1;
     } else {
         return 2;
@@ -128,6 +165,8 @@
 {
     if (pickerView == self.sexPicker) {
         return 2;
+    } else if (pickerView == self.classPicker) {
+        return self.classList.count;
     } else {
         if (component == 0) {
             return self.provinceList.count;
@@ -147,7 +186,9 @@
 {
     if (pickerView == self.sexPicker) {
         return self.sexList[row];
-    } else {
+    } else if(pickerView == self.classPicker) {
+        return self.classList[row][@"name"];
+    }else {
         if (component == 0) {
             NSDictionary *provinceDict = self.provinceList[row];
             return provinceDict[@"PR_Name"];
@@ -168,11 +209,14 @@
 {
     if (pickerView == self.sexPicker) {
         self.U_SexField.text = self.sexList[row];
+    } else if (pickerView == self.classPicker) {
+        self.C_NameField.text = self.classList[row][@"name"];
+        self.classID = self.classList[row][@"id"];
     } else {
         if (component == 0) {
-            [pickerView reloadComponent:1];
             NSDictionary *provinceDict = self.provinceList[row];
             NSString *provinceID = provinceDict[@"PR_Id"];
+            self.provinceID = provinceID;
             NSString *provinceName = provinceDict[@"PR_Name"];
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CT_Province == %@",provinceID];
             NSArray *cityList = [self.cityList filteredArrayUsingPredicate:predicate];
@@ -180,8 +224,10 @@
             
             NSInteger rows = [pickerView selectedRowInComponent:1];
             NSString *cityName = cityList[rows][@"CT_Name"];
+            self.cityID = cityList[rows][@"CT_Id"];
             
             self.provincecityField.text = [NSString stringWithFormat:@"%@%@",provinceName,cityName];
+            [pickerView reloadComponent:1];
         } else {
             NSInteger rows = [pickerView selectedRowInComponent:0];
             NSDictionary *provinceDict = self.provinceList[rows];
@@ -191,6 +237,7 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CT_Province == %@",provinceID];
             NSArray *cityList = [self.cityList filteredArrayUsingPredicate:predicate];
             NSString *cityName = cityList[row][@"CT_Name"];
+            self.cityID = cityList[rows][@"CT_Id"];
             
             self.provincecityField.text = [NSString stringWithFormat:@"%@%@",provinceName,cityName];
             
@@ -272,17 +319,72 @@
         return;
     }
     //邮箱
-    if (![self predicate:@"/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/" withStr:self.U_EmailField.text]) {
+    if (![self predicate:@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$" withStr:self.U_EmailField.text]) {
         [self alertWithStr:@"请填写正确的邮箱"];
         return;
     }
 
+//    
+//    action=Reg&&&U_Class=班级（下拉框选择传递整形）&U_QQ=QQ可空&U_WeChat=微信 可空&U_Email=邮箱 可空&U_CurrentAdress=定位的当前位置 可空&U_Job=职业&U_Province=省份（根据JSON来 整型ID）&U_City=城市 根据JSON来 整型ID
+//    
+//
+    NSDictionary *dict = @{
+                           @"action":@"Reg",
+                           @"A_Account":self.A_AccountField.text,
+                           @"A_Password":self.A_PasswordField.text,
+                           @"U_Name":self.U_NameField.text,
+                           @"U_Sex":[self.U_SexField.text isEqualToString:@"男"]?@"1":@"0",
+                           @"U_Birthday":self.U_BirthdayField.text,
+                           @"U_Phone":self.U_PhoneField.text,
+                           @"U_Adress":self.U_AdressField.text,
+                           @"U_Class":self.classID,
+                           @"U_QQ":self.U_QQField.text,
+                           @"U_WeChat":self.U_WeChatField.text,
+                           @"U_Email":self.U_EmailField.text,
+                           @"U_CurrentAdress":@"",
+                           @"U_Job":self.U_JobField.text,
+                           @"U_Province":self.provinceID,
+                           @"U_City":self.cityID
+                           };
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"正在注册";
+    [HUD show:YES];
+    
+    
+     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/UserService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        MLog(@"%@",responseObject);
+        if ([responseObject[@"RegMess"] isEqualToString:@"Success"]) {
+            HUD.labelText = @"注册成功";
+            [HUD hide:YES afterDelay:1];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            HUD.labelText = @"注册失败";
+            [HUD hide:YES afterDelay:1];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MLog(@"%@",operation.responseString);
+        MLog(@"%@",error);
+        HUD.labelText = @"注册失败";
+        [HUD hide:YES afterDelay:1];
+        
+    }];
+    
 
-    
-    
-    
 }
 
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [hud removeFromSuperview];
+    hud = nil;
+}
 
 
 /**
@@ -319,7 +421,6 @@
 {
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc] init];
-        //_datePicker.bounds = CGRectMake(0, 0, 300, 100);
         _datePicker.datePickerMode = UIDatePickerModeDate;
         _datePicker.backgroundColor = [UIColor whiteColor];
         //设置区域
@@ -353,6 +454,18 @@
     return _cityPicker;
 }
 
+- (UIPickerView *)classPicker
+{
+    if (!_classPicker) {
+        _classPicker = [[UIPickerView alloc] init];
+        _classPicker.delegate = self;
+        _classPicker.dataSource = self;
+        _classPicker.showsSelectionIndicator = YES;
+        _classPicker.backgroundColor = [UIColor whiteColor];
+    }
+    return _classPicker;
+}
+
 - (NSArray *)provinceList
 {
     if (!_provinceList) {
@@ -369,6 +482,14 @@
         _cityList = [NSArray arrayWithContentsOfFile:strUlr];
     }
     return _cityList;
+}
+
+- (NSArray *)classList
+{
+    if (!_classList) {
+        _classList = @[@{@"id":@"1",@"name":@"A班"},@{@"id":@"2",@"name":@"B班"},@{@"id":@"3",@"name":@"C班"}];
+    }
+    return _classList;
 }
 
 

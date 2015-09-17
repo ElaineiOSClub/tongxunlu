@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ConstractProvinceModel;
 @interface ProvinceCell : UITableViewCell
-
+@property (nonatomic, strong) ConstractProvinceModel *model;
 @end
