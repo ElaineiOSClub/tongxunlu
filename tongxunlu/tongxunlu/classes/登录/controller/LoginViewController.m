@@ -60,6 +60,7 @@
     [self.view addSubview:HUD];
     HUD.delegate = self;
     HUD.labelText = @"正在登陆";
+    HUD.removeFromSuperViewOnHide = YES;
     [HUD show:YES];
 
     
@@ -67,24 +68,30 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/UserService.ashx",KUrl];
     [HttpTool httpToolPost:urlStr parameters:@{@"action":@"Login",@"Account":self.userNameField.text,@"Password":self.passWordField.text } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         MLog(@"%@",responseObject);
-        Account *account = [Account objectWithKeyValues:responseObject[0]];
         
-        [[AccountTool shareAccount] saveAccount:account];
-        
-        
-
-        [HUD hide:YES];
-        TabBarViewController *tab = [[TabBarViewController alloc] init];
-        self.view.window.rootViewController = tab;
+        if ([responseObject[@"LoginMes"] isEqualToString:@"Success"]) {
+            NSDictionary *dict = responseObject[@"data"];
+            Account *account = [Account objectWithKeyValues:dict];
+            [[AccountTool shareAccount] saveAccount:account];
+            HUD.labelText = @"登录成功";
+            [HUD hide:YES];
+            TabBarViewController *tab = [[TabBarViewController alloc] init];
+            self.view.window.rootViewController = tab;
+        } else {
+             HUD.labelText = responseObject[@"LoginMes"];
+             [HUD hide:YES afterDelay:1.5];
+        }
+    
+       
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MLog(@"%@",operation.responseString);
         MLog(@"%@",error);
+        
+        HUD.labelText = @"当前网络异常，请重试";
+        [HUD hide:YES afterDelay:1];
+        
+        
     }];
-    
-    
-    
-    
-    
 
 }
 
@@ -121,7 +128,10 @@
     [alert show];
 }
 
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
 
 
 

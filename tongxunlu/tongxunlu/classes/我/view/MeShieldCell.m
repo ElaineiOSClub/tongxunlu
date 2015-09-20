@@ -7,6 +7,7 @@
 //
 
 #import "MeShieldCell.h"
+#import "MeShield.h"
 
 @interface MeShieldCell()
 @property (weak, nonatomic) IBOutlet UILabel *classLabel;
@@ -20,8 +21,18 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (IBAction)btnClick:(id)sender {
+
+- (void)setModel:(MeShield *)model
+{
+    _model = model;
+    self.classLabel.text = model.name;
+    self.btn.selected = model.isOK;
+}
+
+
+- (IBAction)btnClick:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(meShieldCell:btnClick:indexPath:)]) {
+        sender.selected = !sender.selected;
         [self.delegate meShieldCell:self btnClick:sender indexPath:self.indexPath];
     }
 }

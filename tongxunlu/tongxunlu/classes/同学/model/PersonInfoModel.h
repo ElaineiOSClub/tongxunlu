@@ -1,14 +1,14 @@
 //
-//  Account.h
-//  iosNav
+//  PersonInfoModel.h
+//  tongxunlu
 //
-//  Created by elaine on 15/5/12.
-//  Copyright (c) 2015年 mandalat. All rights reserved.
+//  Created by elaine on 15/9/19.
+//  Copyright (c) 2015年 sancaikeji. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-@interface Account : NSObject<NSCoding>
-@property (nonatomic, copy) NSString *Token;
+
+@interface PersonInfoModel : NSObject
 @property (nonatomic, copy) NSString *U_Adress;
 @property (nonatomic, copy) NSString *U_Birthday;
 @property (nonatomic, copy) NSString *U_City;
@@ -24,9 +24,10 @@
 @property (nonatomic, copy) NSString *U_Sex;
 @property (nonatomic, copy) NSString *U_Sign;
 @property (nonatomic, copy) NSString *U_WeChat;
+
 @property (nonatomic, copy) NSString *CT_Name;
-@property (nonatomic, copy) NSString *PR_Name;
 @property (nonatomic, copy) NSString *C_Name;
+@property (nonatomic, copy) NSString *PR_Name;
 
 
 

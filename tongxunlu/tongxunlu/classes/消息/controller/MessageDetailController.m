@@ -8,18 +8,59 @@
 
 #import "MessageDetailController.h"
 #import "MessageDetailCell.h"
-
+#import "HttpTool.h"
+#import "MJExtension.h"
+#import "AccountTool.h"
+#import "MessageList.h"
+#import "MessageDetail.h"
+#import "MBProgressHUD.h"
 
 static NSString *const cellID = @"cellID";
 
 @interface MessageDetailController ()
-
+{
+    MBProgressHUD *HUD;
+}
+@property (nonatomic, strong) MessageDetail *message;
 @end
 
 @implementation MessageDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.bounces = NO;
+    
+    [self.tableView registerClass:[MessageDetailCell class] forCellReuseIdentifier:cellID];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //action=GetMess&Id=XXX
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/MessageService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"GetMess",@"Token":[AccountTool shareAccount].account.Token,@"ID":_messageList.Id} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        MLog(@"%@",responseObject);
+        self.message = [MessageDetail objectWithKeyValues:responseObject[0]];
+        [self createHead];
+        
+        
+        [self.tableView reloadData];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MLog(@"%@",operation.responseString);
+    }];
+
+}
+
+
+- (void)createHead
+{
     UIView *view = [[UIView alloc] init];
     view.height = 50;
     view.backgroundColor = KColor(252, 252, 252);
@@ -32,7 +73,7 @@ static NSString *const cellID = @"cellID";
     [view addSubview:lineView];
     
     UILabel *userLable = [[UILabel alloc] init];
-    userLable.text = @"Admin";
+    userLable.text = _message.PN_Sender;
     userLable.font = [UIFont systemFontOfSize:14];
     [userLable sizeToFit];
     userLable.x = 16;
@@ -40,8 +81,8 @@ static NSString *const cellID = @"cellID";
     [view addSubview:userLable];
     
     UILabel *dateLabel = [[UILabel alloc] init];
-    dateLabel.text = @"2012-12-12 12:12";
-     dateLabel.font = [UIFont systemFontOfSize:13];
+    dateLabel.text = _message.PN_PushTime;
+    dateLabel.font = [UIFont systemFontOfSize:13];
     dateLabel.textColor = KColor(187, 187, 187);
     [dateLabel sizeToFit];
     dateLabel.x = 16;
@@ -61,10 +102,6 @@ static NSString *const cellID = @"cellID";
     
     [view addSubview:button];
     self.tableView.tableHeaderView = view;
-    self.tableView.bounces = NO;
-    
-    [self.tableView registerClass:[MessageDetailCell class] forCellReuseIdentifier:cellID];
-    
 }
 
 #pragma mark - Table view data source
@@ -75,7 +112,10 @@ static NSString *const cellID = @"cellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 1;
+    if (self.message) {
+        return 1;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,9 +126,7 @@ static NSString *const cellID = @"cellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID
                                                               forIndexPath:indexPath];
-    
-    
-    
+    cell.message = self.message;
     return cell;
 }
 

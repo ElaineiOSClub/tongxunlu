@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PersonListModel.h"
 @interface PersonViewController : UITableViewController
-
+@property (nonatomic, assign) NSInteger UserId;
+@property (nonatomic, strong) PersonListModel *personModel;
 @end

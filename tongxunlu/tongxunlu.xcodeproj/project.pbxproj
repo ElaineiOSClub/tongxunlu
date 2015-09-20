@@ -18,6 +18,10 @@
 		B92C07BC1B9F288400B4F5E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92C07BB1B9F288400B4F5E6 /* Images.xcassets */; };
 		B92C07BF1B9F288400B4F5E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B92C07BD1B9F288400B4F5E6 /* LaunchScreen.xib */; };
 		B92C07CB1B9F288400B4F5E6 /* tongxunluTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B92C07CA1B9F288400B4F5E6 /* tongxunluTests.m */; };
+		B98C75E81BAD9FC0001C7776 /* PersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C75E71BAD9FC0001C7776 /* PersonListViewController.m */; };
+		B98C75EB1BADAD12001C7776 /* PersonListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C75EA1BADAD12001C7776 /* PersonListModel.m */; };
+		B98C75EE1BADB1FA001C7776 /* PersonInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C75ED1BADB1FA001C7776 /* PersonInfoModel.m */; };
+		B98C75F11BADC843001C7776 /* MessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C75F01BADC843001C7776 /* MessageList.m */; };
 		B99A74FB1BA5400000D00CF8 /* province.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99A74FA1BA5400000D00CF8 /* province.plist */; };
 		B99A74FF1BA5403B00D00CF8 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99A74FE1BA5403B00D00CF8 /* city.plist */; };
 		B99A75021BA563A400D00CF8 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99A75011BA563A400D00CF8 /* PersonViewController.m */; };
@@ -85,6 +89,11 @@
 		B9A1CCDE1BA32C7B00C43B7C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CCDD1BA32C7B00C43B7C /* RegisterViewController.m */; };
 		B9A1CCE21BA3AD6000C43B7C /* RegistersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A1CCE01BA3AD6000C43B7C /* RegistersViewController.m */; };
 		B9A1CCE31BA3AD6000C43B7C /* RegistersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A1CCE11BA3AD6000C43B7C /* RegistersViewController.xib */; };
+		B9C56F1D1BAEA9D600F11943 /* MessageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C56F1C1BAEA9D600F11943 /* MessageDetail.m */; };
+		B9C56F201BAEBACA00F11943 /* MeShield.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C56F1F1BAEBACA00F11943 /* MeShield.m */; };
+		B9C56F271BAEF18100F11943 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C56F261BAEF18100F11943 /* SearchViewController.m */; };
+		B9C56F301BAF702A00F11943 /* MeModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C56F2E1BAF702A00F11943 /* MeModifyViewController.m */; };
+		B9C56F311BAF702A00F11943 /* MeModifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C56F2F1BAF702A00F11943 /* MeModifyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +128,14 @@
 		B92C07C41B9F288400B4F5E6 /* tongxunluTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tongxunluTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92C07C91B9F288400B4F5E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B92C07CA1B9F288400B4F5E6 /* tongxunluTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tongxunluTests.m; sourceTree = "<group>"; };
+		B98C75E61BAD9FC0001C7776 /* PersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonListViewController.h; sourceTree = "<group>"; };
+		B98C75E71BAD9FC0001C7776 /* PersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonListViewController.m; sourceTree = "<group>"; };
+		B98C75E91BADAD12001C7776 /* PersonListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonListModel.h; sourceTree = "<group>"; };
+		B98C75EA1BADAD12001C7776 /* PersonListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonListModel.m; sourceTree = "<group>"; };
+		B98C75EC1BADB1FA001C7776 /* PersonInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfoModel.h; sourceTree = "<group>"; };
+		B98C75ED1BADB1FA001C7776 /* PersonInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfoModel.m; sourceTree = "<group>"; };
+		B98C75EF1BADC843001C7776 /* MessageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageList.h; sourceTree = "<group>"; };
+		B98C75F01BADC843001C7776 /* MessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageList.m; sourceTree = "<group>"; };
 		B99A74FA1BA5400000D00CF8 /* province.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = province.plist; sourceTree = "<group>"; };
 		B99A74FE1BA5403B00D00CF8 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		B99A75001BA563A400D00CF8 /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
@@ -251,6 +268,15 @@
 		B9A1CCDF1BA3AD6000C43B7C /* RegistersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistersViewController.h; sourceTree = "<group>"; };
 		B9A1CCE01BA3AD6000C43B7C /* RegistersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistersViewController.m; sourceTree = "<group>"; };
 		B9A1CCE11BA3AD6000C43B7C /* RegistersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistersViewController.xib; sourceTree = "<group>"; };
+		B9C56F1B1BAEA9D600F11943 /* MessageDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetail.h; sourceTree = "<group>"; };
+		B9C56F1C1BAEA9D600F11943 /* MessageDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetail.m; sourceTree = "<group>"; };
+		B9C56F1E1BAEBACA00F11943 /* MeShield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeShield.h; sourceTree = "<group>"; };
+		B9C56F1F1BAEBACA00F11943 /* MeShield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeShield.m; sourceTree = "<group>"; };
+		B9C56F251BAEF18100F11943 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		B9C56F261BAEF18100F11943 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		B9C56F2D1BAF702A00F11943 /* MeModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeModifyViewController.h; sourceTree = "<group>"; };
+		B9C56F2E1BAF702A00F11943 /* MeModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeModifyViewController.m; sourceTree = "<group>"; };
+		B9C56F2F1BAF702A00F11943 /* MeModifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeModifyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +362,7 @@
 		B9A1CC0E1B9F372800C43B7C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				B9C56F211BAEF16300F11943 /* 搜索 */,
 				B9A1CCD81BA32A7A00C43B7C /* 注册 */,
 				B9A1CCB51BA068FF00C43B7C /* 同学 */,
 				B9A1CCB91BA068FF00C43B7C /* 我 */,
@@ -568,6 +595,8 @@
 				B99A75011BA563A400D00CF8 /* PersonViewController.m */,
 				B905FBD21BAAFFC400A16AF1 /* ConstractCityViewController.h */,
 				B905FBD31BAAFFC400A16AF1 /* ConstractCityViewController.m */,
+				B98C75E61BAD9FC0001C7776 /* PersonListViewController.h */,
+				B98C75E71BAD9FC0001C7776 /* PersonListViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -579,6 +608,10 @@
 				B905FBD01BAAFF5900A16AF1 /* ConstractProvinceModel.m */,
 				B905FBD81BAB1A3300A16AF1 /* ConstractCityModel.h */,
 				B905FBD91BAB1A3300A16AF1 /* ConstractCityModel.m */,
+				B98C75E91BADAD12001C7776 /* PersonListModel.h */,
+				B98C75EA1BADAD12001C7776 /* PersonListModel.m */,
+				B98C75EC1BADB1FA001C7776 /* PersonInfoModel.h */,
+				B98C75ED1BADB1FA001C7776 /* PersonInfoModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -618,6 +651,9 @@
 				B99A75141BA78D5100D00CF8 /* MeEditViewController.xib */,
 				B99A75171BA84C4000D00CF8 /* MeShieldViewController.h */,
 				B99A75181BA84C4000D00CF8 /* MeShieldViewController.m */,
+				B9C56F2D1BAF702A00F11943 /* MeModifyViewController.h */,
+				B9C56F2E1BAF702A00F11943 /* MeModifyViewController.m */,
+				B9C56F2F1BAF702A00F11943 /* MeModifyViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -627,6 +663,8 @@
 			children = (
 				B9A1CCCD1BA1BC6800C43B7C /* MeModel.h */,
 				B9A1CCCE1BA1BC6800C43B7C /* MeModel.m */,
+				B9C56F1E1BAEBACA00F11943 /* MeShield.h */,
+				B9C56F1F1BAEBACA00F11943 /* MeShield.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -667,6 +705,10 @@
 		B9A1CCBF1BA068FF00C43B7C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B98C75EF1BADC843001C7776 /* MessageList.h */,
+				B98C75F01BADC843001C7776 /* MessageList.m */,
+				B9C56F1B1BAEA9D600F11943 /* MessageDetail.h */,
+				B9C56F1C1BAEA9D600F11943 /* MessageDetail.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -712,6 +754,39 @@
 			sourceTree = "<group>";
 		};
 		B9A1CCDB1BA32A7A00C43B7C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B9C56F211BAEF16300F11943 /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				B9C56F221BAEF16300F11943 /* controller */,
+				B9C56F231BAEF16300F11943 /* model */,
+				B9C56F241BAEF16300F11943 /* view */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
+		B9C56F221BAEF16300F11943 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				B9C56F251BAEF18100F11943 /* SearchViewController.h */,
+				B9C56F261BAEF18100F11943 /* SearchViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		B9C56F231BAEF16300F11943 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B9C56F241BAEF16300F11943 /* view */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -802,6 +877,7 @@
 				B99A75211BA84F8900D00CF8 /* MeShieldCell.xib in Resources */,
 				B9A1CCD71BA1D0A400C43B7C /* LoginViewController.xib in Resources */,
 				B92C07BA1B9F288400B4F5E6 /* Main.storyboard in Resources */,
+				B9C56F311BAF702A00F11943 /* MeModifyViewController.xib in Resources */,
 				B99A74FF1BA5403B00D00CF8 /* city.plist in Resources */,
 				B99A74FB1BA5400000D00CF8 /* province.plist in Resources */,
 				B9A1CCE31BA3AD6000C43B7C /* RegistersViewController.xib in Resources */,
@@ -826,12 +902,14 @@
 			files = (
 				B9A1CCCF1BA1BC6800C43B7C /* MeModel.m in Sources */,
 				B9A1CCB31B9F9D8500C43B7C /* ConstH.m in Sources */,
+				B98C75EE1BADB1FA001C7776 /* PersonInfoModel.m in Sources */,
 				B9A1CCA81B9F9C4B00C43B7C /* UIView+WebCacheOperation.m in Sources */,
 				B905FBD41BAAFFC400A16AF1 /* ConstractCityViewController.m in Sources */,
 				B9A1CC8B1B9F9C4B00C43B7C /* AFSecurityPolicy.m in Sources */,
 				B99A750E1BA5AE8A00D00CF8 /* MessageDetailController.m in Sources */,
 				B9A1CC831B9F9C4B00C43B7C /* UIView+Extension.m in Sources */,
 				B99A75021BA563A400D00CF8 /* PersonViewController.m in Sources */,
+				B98C75EB1BADAD12001C7776 /* PersonListModel.m in Sources */,
 				B99A75191BA84C4000D00CF8 /* MeShieldViewController.m in Sources */,
 				B9A1CC8A1B9F9C4B00C43B7C /* AFNetworkReachabilityManager.m in Sources */,
 				B9A1CCC31BA06D3B00C43B7C /* ConstractViewController.m in Sources */,
@@ -852,17 +930,22 @@
 				B9A1CC8F1B9F9C4B00C43B7C /* AFURLSessionManager.m in Sources */,
 				B905FBDA1BAB1A3300A16AF1 /* ConstractCityModel.m in Sources */,
 				B92C07B41B9F288400B4F5E6 /* AppDelegate.m in Sources */,
+				B98C75E81BAD9FC0001C7776 /* PersonListViewController.m in Sources */,
 				B99A75111BA5B15A00D00CF8 /* MessageDetailCell.m in Sources */,
+				B9C56F301BAF702A00F11943 /* MeModifyViewController.m in Sources */,
 				B99A75081BA56E6B00D00CF8 /* AccountInfoViewController.m in Sources */,
 				B9A1CCA21B9F9C4B00C43B7C /* UIButton+WebCache.m in Sources */,
 				B9A1CCAF1B9F9C4B00C43B7C /* HttpTool.m in Sources */,
 				B99A75241BA9BDC500D00CF8 /* AccountTool.m in Sources */,
 				B9A1CCA31B9F9C4B00C43B7C /* UIImage+GIF.m in Sources */,
+				B9C56F271BAEF18100F11943 /* SearchViewController.m in Sources */,
 				B9A1CC961B9F9C4B00C43B7C /* NSObject+MJKeyValue.m in Sources */,
+				B9C56F201BAEBACA00F11943 /* MeShield.m in Sources */,
 				B9A1CC881B9F9C4B00C43B7C /* AFHTTPRequestOperationManager.m in Sources */,
 				B92C07B11B9F288400B4F5E6 /* main.m in Sources */,
 				B9A1CC8E1B9F9C4B00C43B7C /* AFURLResponseSerialization.m in Sources */,
 				B9A1CC971B9F9C4B00C43B7C /* NSObject+MJProperty.m in Sources */,
+				B9C56F1D1BAEA9D600F11943 /* MessageDetail.m in Sources */,
 				B9A1CC921B9F9C4B00C43B7C /* MJFoundation.m in Sources */,
 				B99A75051BA5676500D00CF8 /* PersonInfoCell.m in Sources */,
 				B9A1CC9B1B9F9C4B00C43B7C /* SDImageCache.m in Sources */,
@@ -878,6 +961,7 @@
 				B905FBD71BAAFFFD00A16AF1 /* CityCell.m in Sources */,
 				B9A1CC861B9F9C4B00C43B7C /* TabBarViewController.m in Sources */,
 				B99A75271BA9BDD600D00CF8 /* Account.m in Sources */,
+				B98C75F11BADC843001C7776 /* MessageList.m in Sources */,
 				B9A1CCA71B9F9C4B00C43B7C /* UIImageView+WebCache.m in Sources */,
 				B9A1CC9E1B9F9C4B00C43B7C /* SDWebImageDownloader.m in Sources */,
 				B9A1CCD61BA1D0A400C43B7C /* LoginViewController.m in Sources */,

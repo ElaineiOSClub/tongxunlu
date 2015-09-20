@@ -48,6 +48,21 @@ static AccountTool *_instance;
     
     MLog(@"%@",kFile);
     _account = account;
+    
+    NSInteger U_Birthday = [[account.U_Birthday substringWithRange:NSMakeRange(0, 4)] integerValue];
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+    NSInteger year = [dateComponent year];
+    
+    account.U_Birthday = [NSString stringWithFormat:@"%ld",year - U_Birthday + 1];
+    
+    account.U_Sex = [account.U_Sex isEqualToString:@"1"]?@"男":@"女";
+    
+    
+    
+    
     [NSKeyedArchiver archiveRootObject:account toFile:kFile];
     
 }

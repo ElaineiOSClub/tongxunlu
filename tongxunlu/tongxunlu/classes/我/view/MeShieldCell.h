@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MeShield;
 @class MeShieldCell;
 
 @protocol MeShieldCellDelegate <NSObject>
@@ -18,4 +19,5 @@
 @interface MeShieldCell : UITableViewCell
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, weak) id<MeShieldCellDelegate> delegate;
+@property (nonatomic, strong) MeShield *model;
 @end

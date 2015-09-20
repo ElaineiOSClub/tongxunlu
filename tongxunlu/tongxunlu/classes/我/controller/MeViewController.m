@@ -16,7 +16,19 @@
 //屏蔽信息
 #import "MeShieldViewController.h"
 
+#import "AccountTool.h"
+
+#import "HttpTool.h"
+
+#import "MBProgressHUD.h"
+
+#import "LoginViewController.h"
+
+
 @interface MeViewController ()<UIWebViewDelegate>
+{
+    MBProgressHUD *HUD;
+}
 @property (nonatomic, strong) NSArray *modelList;
 @property (nonatomic, strong) UIWebView *webView;
 @end
@@ -33,7 +45,7 @@
     headView.height = 80;
 
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"大白菜";
+    label.text = [AccountTool shareAccount].account.U_Name;
     label.font = [UIFont systemFontOfSize:16];
     [label sizeToFit];
     label.centerY = headView.height/2;
@@ -103,6 +115,8 @@
         cell.textLabel.text = model.text;
         cell.imageView.image = [UIImage imageNamed:model.imageStr];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        
         return cell;
     } else {
         MeOutCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"cell"];
@@ -129,11 +143,29 @@
             Class class = NSClassFromString(model.classStr);
             [self.navigationController pushViewController:[[class alloc] init] animated:YES];
         }
+    } else {
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.labelText = @"正在退出";
+        HUD.removeFromSuperViewOnHide = YES;
+        [HUD show:YES];
+        [[AccountTool shareAccount] deleteAccount];
+        HUD.hidden = YES;
+        
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = vc;
+        
     }
 }
 
 - (void)getIP
 {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"正在更新地址";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD show:YES];
     
     _webView = [[UIWebView alloc] init];
     _webView.delegate = self;
@@ -150,10 +182,43 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSString *requestStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName(\"center\")[0].innerHTML;"];
-    NSRange beginRange = [requestStr rangeOfString:@"["];
-    NSRange endRange = [requestStr rangeOfString:@"]"];
-    requestStr = [requestStr substringWithRange: NSMakeRange(beginRange.location + 1, endRange.location - beginRange.location - 1)];
-    //上传IP
+//    NSRange beginRange = [requestStr rangeOfString:@"["];
+//    NSRange endRange = [requestStr rangeOfString:@"]"];
+//    requestStr = [requestStr substringWithRange: NSMakeRange(beginRange.location + 1, endRange.location - beginRange.location - 1)];
+    NSArray *array = [requestStr componentsSeparatedByString:@" "];
+    NSString *address = [array[1] substringWithRange:NSMakeRange(3, [array[1] length] - 3)];
+    MLog(@"%@",address);
+    //上传地址
+    
+    ///AppDo/TokenService.ashx
+    //action=changeCurrentAdress&Token=xxxx&CurrentAdress=当前地址 string
+    
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
+
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"changeCurrentAdress",@"Token":[AccountTool shareAccount].account.Token,@"CurrentAdress":address} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //{\"UpdateAdress\":\"Success\"} 错误 {\"UpdateAdress\":\"Error\"}
+        MLog(@"%@",responseObject);
+        
+        if ([responseObject[@"UpdateAdress"] isEqualToString:@"Success"]) {
+            MLog(@"更新成功");
+            HUD.labelText = @"更新成功";
+            [HUD hide:YES afterDelay:1];
+            
+        } else {
+            MLog(@"更新失败");
+            HUD.labelText = @"更新失败";
+            [HUD hide:YES afterDelay:1];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MLog(@"%@",operation.responseString);
+        MLog(@"网络异常");
+        HUD.labelText = @"网络异常";
+        [HUD hide:YES afterDelay:1];
+    }];
+    
   
 }
 

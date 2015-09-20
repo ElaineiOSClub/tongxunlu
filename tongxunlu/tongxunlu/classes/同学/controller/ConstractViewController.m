@@ -16,9 +16,16 @@
 #import "ConstractCityViewController.h"
 #import "ConstractProvinceModel.h"
 
+#import "MBProgressHUD.h"
+
+#import "SearchViewController.h"
+
 static NSString *const cellID = @"cell";
 
 @interface ConstractViewController ()
+{
+    MBProgressHUD *HUD;
+}
 @property (nonatomic, strong) NSMutableArray *arrayList;
 @end
 
@@ -30,10 +37,29 @@ static NSString *const cellID = @"cell";
     [self.tableView registerClass:[ProvinceCell class] forCellReuseIdentifier:cellID];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(search)];
     
-//    /AppDo/TokenService.ashx 
-//    获取省列表：action=getProvinceList&Token=XXX
+}
+
+- (void)search
+{
+    SearchViewController *vc = [[SearchViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"正在加载";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD show:YES];
+
+    //    /AppDo/TokenService.ashx
+    //    获取省列表：action=getProvinceList&Token=XXX
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
     [HttpTool httpToolPost:urlStr parameters:@{@"action":@"getProvinceList",@"Token":[AccountTool shareAccount].account.Token} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         MLog(@"%@",responseObject);
@@ -45,17 +71,17 @@ static NSString *const cellID = @"cell";
         [self.arrayList removeObjectsInArray:[self.arrayList filteredArrayUsingPredicate:pred]];
         
         MLog(@"%@",self.arrayList);
+        HUD.hidden = YES;
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         MLog(@"%@",error);
+        MLog(@"%@",operation.responseString);
+        MLog(@"%@",error);
+         HUD.labelText = @"网络异常，稍后再试";
+        [HUD hide:YES afterDelay:1];
+        
     }];
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 

@@ -7,6 +7,7 @@
 //
 
 #import "MessageCell.h"
+#import "MessageList.h"
 
 @interface MessageCell()
 @property (nonatomic, strong) UIImageView *titleImageView;
@@ -28,22 +29,26 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         
-        NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:@"十大商店就是大神见到手十大商店就是大神见到手十大商店就是大神见到手"];
-        [attributed addAttribute:NSFontAttributeName value:self.titleTextLabel.font range:NSMakeRange(0, attributed.length)];
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = 4;
-        [attributed addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,attributed.length)];
-        
-        self.titleTextLabel.attributedText = attributed;
-        
-        
-        
-        
     }
     return self;
 }
 
-
+- (void)setModel:(MessageList *)model
+{
+    _model = model;
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:model.Title];
+    [attributed addAttribute:NSFontAttributeName value:self.titleTextLabel.font range:NSMakeRange(0, attributed.length)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 4;
+    [attributed addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,attributed.length)];
+    self.titleTextLabel.attributedText = attributed;
+    
+    self.userNameTextLabel.text = model.Sender;
+    self.dateTextLabel.text = model.PushTime;
+    
+    
+    
+}
 
 
 - (void)layoutSubviews

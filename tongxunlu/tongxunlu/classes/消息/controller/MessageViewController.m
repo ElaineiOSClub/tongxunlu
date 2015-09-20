@@ -9,12 +9,20 @@
 #import "MessageViewController.h"
 #import "MessageCell.h"
 #import "MessageDetailController.h"
+#import "HttpTool.h"
+#import "AccountTool.h"
+#import "MessageList.h"
+#import "MJExtension.h"
+#import "MBProgressHUD.h"
 
 
 static NSString *const cellID = @"cellID";
 
 @interface MessageViewController ()
-
+{
+    MBProgressHUD *HUD;
+}
+@property (nonatomic, strong) NSArray *arrayList;
 @end
 
 @implementation MessageViewController
@@ -24,12 +32,40 @@ static NSString *const cellID = @"cellID";
     self.title = @"消息";
   
     [self.tableView registerClass:[MessageCell class] forCellReuseIdentifier:cellID];
+     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"正在加载";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD show:YES];
+    
+    ///AppDo/MessageService.ashx
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/MessageService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"GetMessList",@"Token":[AccountTool shareAccount].account.Token} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        HUD.hidden = YES;
+        
+        MLog(@"%@",responseObject);
+        self.arrayList = [MessageList objectArrayWithKeyValuesArray:responseObject];
+        [self.tableView reloadData];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        HUD.labelText = @"网络异常，稍后再试";
+        [HUD hide:YES afterDelay:1];
+
+    }];
+
+
 }
+
 
 #pragma mark - Table view data source
 
@@ -40,27 +76,28 @@ static NSString *const cellID = @"cellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return self.arrayList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
-    
+    cell.model = self.arrayList[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 110;
+    return 90;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MessageDetailController *vc = [[MessageDetailController alloc] init];
+    vc.messageList = self.arrayList[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

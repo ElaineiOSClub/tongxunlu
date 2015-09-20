@@ -7,6 +7,7 @@
 //
 
 #import "MessageDetailCell.h"
+#import "MessageDetail.h"
 
 @interface MessageDetailCell()
 @property (nonatomic, strong) UILabel *titleTextLabel;
@@ -43,6 +44,28 @@
     self.contentTextLabel.attributedText = attributed;
     
 }
+
+- (void)setMessage:(MessageDetail *)message
+{
+    _message = message;
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:_message.PN_Title];
+    [attributed addAttribute:NSFontAttributeName value:self.titleTextLabel.font range:NSMakeRange(0, attributed.length)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 4;
+    [attributed addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,attributed.length)];
+    self.titleTextLabel.attributedText = attributed;
+    
+    attributed = [[NSMutableAttributedString alloc] initWithString:_message.PN_Content];
+    [attributed addAttribute:NSFontAttributeName value:self.contentTextLabel.font range:NSMakeRange(0, attributed.length)];
+    paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 4;
+    [attributed addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,attributed.length)];
+    self.contentTextLabel.attributedText = attributed;
+    
+    
+    
+}
+
 
 - (void)layoutSubviews
 {

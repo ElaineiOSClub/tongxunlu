@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MessageDetail;
 @interface MessageDetailCell : UITableViewCell
-
+@property (nonatomic, strong) MessageDetail *message;
 @end

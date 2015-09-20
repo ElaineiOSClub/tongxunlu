@@ -1,36 +1,35 @@
 //
-//  ConstractCityViewController.m
+//  PersonListViewController.m
 //  tongxunlu
 //
-//  Created by elaine on 15/9/17.
+//  Created by elaine on 15/9/19.
 //  Copyright (c) 2015年 sancaikeji. All rights reserved.
 //
 
-#import "ConstractCityViewController.h"
-#import "CityCell.h"
+#import "PersonListViewController.h"
 #import "HttpTool.h"
 #import "AccountTool.h"
-#import "ConstractCityModel.h"
+#import "PersonListModel.h"
 #import "MJExtension.h"
-#import "PersonListViewController.h"
+#import "PersonViewController.h"
 #import "MBProgressHUD.h"
 
-@interface ConstractCityViewController ()
+static NSString *const cellID = @"cellID";
+
+@interface PersonListViewController ()
 {
     MBProgressHUD *HUD;
 }
-@property (nonatomic, strong) NSMutableArray *arrayList;
+@property (nonatomic, strong) NSArray *arrayList;
 @end
 
-static NSString * const cellID = @"cellID";
-
-@implementation ConstractCityViewController
+@implementation PersonListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[CityCell class] forCellReuseIdentifier:cellID];
-      self.tableView.tableFooterView = [[UIView alloc] init];
     
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
     
     
@@ -45,17 +44,19 @@ static NSString * const cellID = @"cellID";
     HUD.labelText = @"正在加载";
     HUD.removeFromSuperViewOnHide = YES;
     [HUD show:YES];
+
     
-    //获取市列表：action=getCity&Token=XXX&ProvinceID=省份ID
+    //action=getUserList&Token=XXX&CityID=城市ID
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
-    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"getCity",@"Token":[AccountTool shareAccount].account.Token,@"ProvinceID":@(self.provinceId)} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        MLog(@"%@",responseObject);
+    MLog(@"%@",[AccountTool shareAccount].account.Token);
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"getUserList",@"Token":[AccountTool shareAccount].account.Token,@"CityID":@(_cityID)} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.arrayList = [PersonListModel objectArrayWithKeyValuesArray:responseObject];
         HUD.hidden = YES;
-        self.arrayList = [ConstractCityModel objectArrayWithKeyValuesArray:responseObject];
-        
         [self.tableView reloadData];
+        MLog(@"%@",responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        MLog(@"%@",error);
+        MLog(@"%@",operation.responseString);
+        MLog(@"人员列表--%@",error);
         HUD.labelText = @"网络异常，稍后再试";
         [HUD hide:YES afterDelay:1];
     }];
@@ -63,40 +64,41 @@ static NSString * const cellID = @"cellID";
 }
 
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    // Return the number of rows in the section.
     return self.arrayList.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CityCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    cell.model = self.arrayList[indexPath.row];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+    }
+    PersonListModel *model = self.arrayList[indexPath.row];
+    cell.textLabel.text = model.U_Name;
+    cell.detailTextLabel.text = model.C_Name;
     return cell;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ConstractCityModel *model = self.arrayList[indexPath.row];
-    PersonListViewController *vc = [[PersonListViewController alloc] initWithStyle:UITableViewStylePlain];
-    vc.cityID = model.CityId;
+    PersonListModel *model = self.arrayList[indexPath.row];
+    PersonViewController *vc = [[PersonViewController alloc] init];
+    vc.UserId = model.U_Id;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -8,12 +8,20 @@
 
 #import "PersonViewController.h"
 #import "PersonInfoCell.h"
+#import "HttpTool.h"
+#import "PersonInfoModel.h"
+#import "MJExtension.h"
+#import "MBProgressHUD.h"
 
 
 static NSString * const cellID = @"cellID";
 
 @interface PersonViewController ()
+{
+    MBProgressHUD *HUD;
+}
 @property (nonatomic, strong) NSArray *titleList;
+@property (nonatomic, strong) PersonInfoModel *model;
 @end
 
 @implementation PersonViewController
@@ -22,31 +30,57 @@ static NSString * const cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"大白菜";
-    
-    UIView *headView = [[UIView alloc] init];
-    headView.height = 80;
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"大白菜";
-    label.font = [UIFont systemFontOfSize:16];
-    [label sizeToFit];
-    label.centerY = headView.height/2;
-    label.x = 20;
-    [headView addSubview:label];
-    self.tableView.tableHeaderView = headView;
-    
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    
     [self.tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:cellID];
-    
-    
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"正在加载";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD show:YES];
+
+    
+    //action=getUserMess&UserId=所点击用户ID
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"getUserMess",@"UserId":@(_UserId)} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        MLog(@"%@",responseObject);
+        HUD.hidden = YES;
+        PersonInfoModel *model = [PersonInfoModel objectWithKeyValues:responseObject[0]];
+        NSInteger U_Birthday = [[model.U_Birthday substringWithRange:NSMakeRange(0, 4)] integerValue];
+        NSDate *date = [NSDate date];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+        NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+        NSInteger year = [dateComponent year];
+        model.U_Birthday = [NSString stringWithFormat:@"%ld",year - U_Birthday + 1];
+        model.U_Sex = [model.U_Sex isEqualToString:@"1"]?@"男":@"女";
+        _model = model;
+        
+        
+        self.title = model.U_Name;
+        UIView *headView = [[UIView alloc] init];
+        headView.height = 80;
+        UILabel *label = [[UILabel alloc] init];
+        label.text = model.U_Name;
+        label.font = [UIFont systemFontOfSize:16];
+        [label sizeToFit];
+        label.centerY = headView.height/2;
+        label.x = 20;
+        [headView addSubview:label];
+        self.tableView.tableHeaderView = headView;
+        
+        MLog(@"%@",model);
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        HUD.labelText = @"网络异常，稍后再试";
+        [HUD hide:YES afterDelay:1];
+    }];
+    
 }
 
 #pragma mark - Table view data source
@@ -65,9 +99,11 @@ static NSString * const cellID = @"cellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PersonInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
+    NSDictionary *dict = self.titleList[indexPath.row];
     
-    cell.titleLabel.text = self.titleList[indexPath.row];
-    cell.contentLabel.text = @"188-9109-6490";
+    
+    cell.titleLabel.text = dict.allValues[0];
+    cell.contentLabel.text = [_model valueForKeyPath:dict.allKeys[0]];
     return cell;
 }
 
@@ -81,11 +117,24 @@ static NSString * const cellID = @"cellID";
 - (NSArray *)titleList
 {
     if (!_titleList) {
-        _titleList = @[@"手机号",@"学校",@"班级",@"家庭地址",@"QQ",@"微信",@"邮箱"];
+        _titleList = @[@{@"U_Phone":@"电话"},@{@"U_Birthday":@"生日"},@{@"U_Sex":@"性别"},@{@"PR_Name":@"省"},@{@"CT_Name":@"城市"},@{@"C_Name":@"班级"},@{@"U_CurrentAdress":@"当前地址"},@{@"U_Email":@"邮箱"},@{@"U_Job":@"职业"},@{@"U_QQ":@"QQ"},@{@"U_WeChat":@"微信"}];
     }
     return _titleList;
 }
 
+//"CT_Name" = "\U91cd\U5e86\U5e02";
+//"C_Name" = "\U88c5\U903c2\U73ed";
+//"PR_Name" = "\U91cd\U5e86\U5e02";
+//"U_Adress" = 123;
+//"U_Birthday" = "2015/9/10 0:00:00";
+//"U_CurrentAdress" = 123;
+//"U_Email" = "lanmingo@vip.qq.com";
+//"U_Job" = 123;
+//"U_Name" = 123;
+//"U_Phone" = 520520;
+//"U_QQ" = 451256978;
+//"U_Sex" = 1;
+//"U_WeChat" = 451256978;
 
 /*
 // Override to support conditional editing of the table view.
