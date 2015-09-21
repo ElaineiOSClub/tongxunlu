@@ -38,43 +38,44 @@ static NSString *const cellID = @"cellID";
     
    
     
+    
 
     
     MeShield *one = [[MeShield alloc] init];
     one.ID = @"1";
-    one.name = @"装逼1班";
-    one.isOK = NO;
-    
-    MeShield *two = [[MeShield alloc] init];
-    two.ID = @"2";
-    two.name = @"装逼2班";
-    two.isOK = NO;
-    
-    MeShield *three = [[MeShield alloc] init];
-    three.ID = @"3";
-    three.name = @"装逼3班";
-    three.isOK = NO;
-    
-    MeShield *four = [[MeShield alloc] init];
-    four.ID = @"3";
-    four.name = @"装逼4班";
-    four.isOK = NO;
+    one.name = @"仅查看自己班级";
+    one.isOK = [[AccountTool shareAccount].account.U_Sign boolValue];
+//    
+//    MeShield *two = [[MeShield alloc] init];
+//    two.ID = @"2";
+//    two.name = @"装逼2班";
+//    two.isOK = NO;
+//    
+//    MeShield *three = [[MeShield alloc] init];
+//    three.ID = @"3";
+//    three.name = @"装逼3班";
+//    three.isOK = NO;
+//    
+//    MeShield *four = [[MeShield alloc] init];
+//    four.ID = @"3";
+//    four.name = @"装逼4班";
+//    four.isOK = NO;
 
-    self.modelList = @[one,two,three,four];
+    self.modelList = @[one];
     
-    if ([[AccountTool shareAccount].account.U_Sign isEqualToString:@"0"]) {
-        return;
-    }
-    NSArray *shieldList = [[AccountTool shareAccount].account.U_Sign componentsSeparatedByString:@","];
-    for (NSInteger i = 0 ; i < shieldList.count ; i++) {
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"ID == '%@'",shieldList[i]];
-        NSArray *list = [self.modelList filteredArrayUsingPredicate:pred];
-        for (MeShield *shield in list) {
-            shield.isOK = YES;
-        }
-        
-    }
+//    if ([[AccountTool shareAccount].account.U_Sign isEqualToString:@"0"]) {
+//        return;
+//    }
+//    NSArray *shieldList = [[AccountTool shareAccount].account.U_Sign componentsSeparatedByString:@","];
+//    for (NSInteger i = 0 ; i < shieldList.count ; i++) {
+//        
+//        NSPredicate *pred = [NSPredicate predicateWithFormat:@"ID == '%@'",shieldList[i]];
+//        NSArray *list = [self.modelList filteredArrayUsingPredicate:pred];
+//        for (MeShield *shield in list) {
+//            shield.isOK = YES;
+//        }
+//        
+//    }
     
     [self.tableView reloadData];
     
@@ -89,20 +90,22 @@ static NSString *const cellID = @"cellID";
     HUD.removeFromSuperViewOnHide = YES;
     [HUD show:YES];
     
-     NSString *newStr = @"";
-    NSMutableString *string = [NSMutableString string];
-    for (MeShield *shield in self.modelList) {
-        if (shield.isOK) {
-            [string appendString:[NSString stringWithFormat:@"%@,",shield.ID]];
-        }
-    }
-    if (string.length == 0) {
-        newStr = @"0";
-        
-    } else {
-       newStr = [string substringWithRange:NSMakeRange(0, string.length - 1)];
-    }
-    MLog(@"%@",newStr);
+//    NSString *newStr = @"";
+//    NSMutableString *string = [NSMutableString string];
+//    for (MeShield *shield in self.modelList) {
+//        if (shield.isOK) {
+//            [string appendString:[NSString stringWithFormat:@"%@,",shield.ID]];
+//        }
+//    }
+//    if (string.length == 0) {
+//        newStr = @"0";
+//        
+//    } else {
+//       newStr = [string substringWithRange:NSMakeRange(0, string.length - 1)];
+//    }
+//    MLog(@"%@",newStr);
+    MeShield *shield = self.modelList[0];
+    NSString *newStr = shield.isOK?@"1":@"0";
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
     

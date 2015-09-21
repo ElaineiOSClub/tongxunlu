@@ -200,8 +200,9 @@
         //{\"UpdateAdress\":\"Success\"} 错误 {\"UpdateAdress\":\"Error\"}
         MLog(@"%@",responseObject);
         
-        if ([responseObject[@"UpdateAdress"] isEqualToString:@"Success"]) {
+        if ([responseObject[@"ChangeAdress"] isEqualToString:@"Success"]) {
             MLog(@"更新成功");
+            [AccountTool shareAccount].account.U_CurrentAdress = address;
             HUD.labelText = @"更新成功";
             [HUD hide:YES afterDelay:1];
             

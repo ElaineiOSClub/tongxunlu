@@ -32,18 +32,13 @@ static NSString * const cellID = @"cellID";
     [super viewDidLoad];
     [self.tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:cellID];
     self.tableView.tableFooterView = [[UIView alloc] init];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.labelText = @"正在加载";
     HUD.removeFromSuperViewOnHide = YES;
     [HUD show:YES];
-
+    
     
     //action=getUserMess&UserId=所点击用户ID
     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
@@ -80,6 +75,13 @@ static NSString * const cellID = @"cellID";
         HUD.labelText = @"网络异常，稍后再试";
         [HUD hide:YES afterDelay:1];
     }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     
 }
 

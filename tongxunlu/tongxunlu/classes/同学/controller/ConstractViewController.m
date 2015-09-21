@@ -19,6 +19,7 @@
 #import "MBProgressHUD.h"
 
 #import "SearchViewController.h"
+#import "MainNavigationViewController.h"
 
 static NSString *const cellID = @"cell";
 
@@ -36,15 +37,20 @@ static NSString *const cellID = @"cell";
     self.title = @"联系人";
     [self.tableView registerClass:[ProvinceCell class] forCellReuseIdentifier:cellID];
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName:KColor(0, 203, 95)} forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = item;
     
 }
 
 - (void)search
 {
+    
     SearchViewController *vc = [[SearchViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:vc animated:YES];
+//    MainNavigationViewController *nav = [[MainNavigationViewController alloc] initWithRootViewController:vc];
+//    
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

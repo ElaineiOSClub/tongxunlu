@@ -11,12 +11,18 @@
 #import "MJExtension.h"
 #import "PersonListModel.h"
 #import "PersonViewController.h"
+#import "AccountTool.h"
+#import "MBProgressHUD.h"
 
 static NSString *const cellID = @"cellID";
 
 @interface SearchViewController ()<UISearchBarDelegate>
+{
+    MBProgressHUD *HUD;
+}
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *arrayList;
+@property (nonatomic, strong) UITextField *textField;
 @end
 
 @implementation SearchViewController
@@ -26,12 +32,17 @@ static NSString *const cellID = @"cellID";
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.placeholder = @"搜索";
     self.searchBar.delegate = self;
+
     self.navigationItem.titleView = self.searchBar;
+    
+//    self.searchBar.width = 150;
+//    self.searchBar.height = 40;
     
      self.tableView.tableFooterView = [[UIView alloc] init];
     
     
     [self.searchBar becomeFirstResponder];
+
 
 }
 
@@ -93,12 +104,27 @@ static NSString *const cellID = @"cellID";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [HttpTool httpToolPost:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-      self.arrayList = [PersonListModel objectArrayWithKeyValuesArray:responseObject];   
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.labelText = @"正在加载";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD show:YES];
+
+    
+    //TokenService.asxh?action=serch&Token=XXX&Job=xxx&Name=XXX 根据工作和姓名搜索 条件需编码 URLENCODE
+     NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
+    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"serch",@"Token":[AccountTool shareAccount].account.Token,@"Name":searchBar.text}  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.arrayList = [PersonListModel objectArrayWithKeyValuesArray:responseObject];
+        HUD.hidden = YES;
         
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        MLog(@"%@",operation.responseString);
+        MLog(@"%@",error);
+        HUD.labelText = @"网络异常";
+        [HUD hide:YES afterDelay:1];
     }];
 }
 
