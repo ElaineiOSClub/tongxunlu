@@ -30,6 +30,9 @@ static NSString * const cellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.tableView registerClass:[PersonInfoCell class] forCellReuseIdentifier:cellID];
     self.tableView.tableFooterView = [[UIView alloc] init];
     

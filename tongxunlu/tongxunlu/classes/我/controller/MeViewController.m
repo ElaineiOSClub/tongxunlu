@@ -194,9 +194,11 @@
     //action=changeCurrentAdress&Token=xxxx&CurrentAdress=当前地址 string
     
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx",KUrl];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/AppDo/TokenService.ashx?action=changeCurrentAdress&Token=%@&CurrentAdress=%@",KUrl,[AccountTool shareAccount].account.Token,address];
+    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
 
-    [HttpTool httpToolPost:urlStr parameters:@{@"action":@"changeCurrentAdress",@"Token":[AccountTool shareAccount].account.Token,@"CurrentAdress":address} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [HttpTool httpToolGet:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //{\"UpdateAdress\":\"Success\"} 错误 {\"UpdateAdress\":\"Error\"}
         MLog(@"%@",responseObject);
         

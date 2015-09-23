@@ -45,6 +45,8 @@
         return;
     }
     
+    [self.phoneField resignFirstResponder];
+    
     //TokenService.asxh?action=changePhone&Token=XXX&Phone=XXX
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];

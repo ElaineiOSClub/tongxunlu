@@ -246,6 +246,19 @@
 }
 
 - (IBAction)registerClick:(id)sender {
+    
+    if (self.U_QQField.text.length == 0) {
+        self.U_QQField.text = @"";
+    }
+    if (self.U_WeChatField.text.length == 0) {
+        self.U_WeChatField.text = @"";
+    }
+    if (self.U_EmailField.text.length == 0) {
+        self.U_EmailField.text = @"";
+    }
+    
+    
+    
     //用户名不能为空
     //1.创建正则表达式
     NSString *pattern = @"^[a-zA-Z][a-zA-Z0-9_]{5,17}$";
@@ -308,18 +321,18 @@
         [self alertWithStr:@"职位不能为空"];
         return;
     }
-    //QQ
-    if ([self.U_QQField.text containsStringWithios7:@" "] || [self.U_QQField.text isEqualToString:@""]) {
-        [self alertWithStr:@"QQ不能为空"];
-        return;
-    }
-    //微信
-    if ( [self.U_WeChatField.text containsStringWithios7:@" "] || [self.U_WeChatField.text isEqualToString:@""]) {
-        [self alertWithStr:@"微信不能为空"];
-        return;
-    }
+//    //QQ
+//    if ([self.U_QQField.text containsStringWithios7:@" "] || [self.U_QQField.text isEqualToString:@""]) {
+//        [self alertWithStr:@"QQ不能为空"];
+//        return;
+//    }
+//    //微信
+//    if ( [self.U_WeChatField.text containsStringWithios7:@" "] || [self.U_WeChatField.text isEqualToString:@""]) {
+//        [self alertWithStr:@"微信不能为空"];
+//        return;
+//    }
     //邮箱
-    if (![self predicate:@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$" withStr:self.U_EmailField.text]) {
+    if (![self predicate:@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$" withStr:self.U_EmailField.text] && ![self.U_EmailField.text isEqualToString:@""]) {
         [self alertWithStr:@"请填写正确的邮箱"];
         return;
     }
@@ -328,6 +341,9 @@
 //    action=Reg&&&U_Class=班级（下拉框选择传递整形）&U_QQ=QQ可空&U_WeChat=微信 可空&U_Email=邮箱 可空&U_CurrentAdress=定位的当前位置 可空&U_Job=职业&U_Province=省份（根据JSON来 整型ID）&U_City=城市 根据JSON来 整型ID
 //    
 //
+    
+
+    
     NSDictionary *dict = @{
                            @"action":@"Reg",
                            @"A_Account":self.A_AccountField.text,
