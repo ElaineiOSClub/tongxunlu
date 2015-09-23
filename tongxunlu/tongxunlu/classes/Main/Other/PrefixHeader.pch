@@ -50,5 +50,5 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //rgb颜色值
 #define KColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 
-#define KUrl @"http://119.86.233.183"
+#define KUrl @"http://syscdn.6655.la"
 

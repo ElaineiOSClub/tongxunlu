@@ -55,6 +55,8 @@
         return;
     }
     
+    [self.view endEditing:YES];
+    
     
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];

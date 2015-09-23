@@ -246,6 +246,19 @@
 }
 
 - (IBAction)registerClick:(id)sender {
+    
+    if (self.U_QQField.text.length == 0) {
+        self.U_QQField.text = @"";
+    }
+    if (self.U_WeChatField.text.length == 0) {
+        self.U_WeChatField.text = @"";
+    }
+    if (self.U_EmailField.text.length == 0) {
+        self.U_EmailField.text = @"";
+    }
+    
+    
+    
     //用户名不能为空
     //1.创建正则表达式
     NSString *pattern = @"^[a-zA-Z][a-zA-Z0-9_]{5,17}$";
@@ -308,18 +321,18 @@
         [self alertWithStr:@"职位不能为空"];
         return;
     }
-    //QQ
-    if ([self.U_QQField.text containsStringWithios7:@" "] || [self.U_QQField.text isEqualToString:@""]) {
-        [self alertWithStr:@"QQ不能为空"];
-        return;
-    }
-    //微信
-    if ( [self.U_WeChatField.text containsStringWithios7:@" "] || [self.U_WeChatField.text isEqualToString:@""]) {
-        [self alertWithStr:@"微信不能为空"];
-        return;
-    }
+//    //QQ
+//    if ([self.U_QQField.text containsStringWithios7:@" "] || [self.U_QQField.text isEqualToString:@""]) {
+//        [self alertWithStr:@"QQ不能为空"];
+//        return;
+//    }
+//    //微信
+//    if ( [self.U_WeChatField.text containsStringWithios7:@" "] || [self.U_WeChatField.text isEqualToString:@""]) {
+//        [self alertWithStr:@"微信不能为空"];
+//        return;
+//    }
     //邮箱
-    if (![self predicate:@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$" withStr:self.U_EmailField.text]) {
+    if (![self predicate:@"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$" withStr:self.U_EmailField.text] && ![self.U_EmailField.text isEqualToString:@""]) {
         [self alertWithStr:@"请填写正确的邮箱"];
         return;
     }
@@ -328,6 +341,9 @@
 //    action=Reg&&&U_Class=班级（下拉框选择传递整形）&U_QQ=QQ可空&U_WeChat=微信 可空&U_Email=邮箱 可空&U_CurrentAdress=定位的当前位置 可空&U_Job=职业&U_Province=省份（根据JSON来 整型ID）&U_City=城市 根据JSON来 整型ID
 //    
 //
+    
+
+    
     NSDictionary *dict = @{
                            @"action":@"Reg",
                            @"A_Account":self.A_AccountField.text,
@@ -486,8 +502,24 @@
 
 - (NSArray *)classList
 {
+//    1	初1992级102班
+//    2	初1992级103班
+//    3	初1992级104班
+//    4	初1992级105班
+//    5	高1995级199班(高一高二)
+//    6	高1995级200班(高一高二)
+//    7	高1995级201班(高一高二)
+//    8	高1995级202班(高一高二)
+//    9	高1995级203班(高一高二)
+//    10	高1995级204班(高一高二)
+//    11	高1995级199班(高三)
+//    12	高1995级200班(高三)
+//    13	高1995级201班(高三)
+//    14	高1995级202班(高三)
+//    15	高1995级203班(高三)
+//    16	高1995级204班(高三)
     if (!_classList) {
-        _classList = @[@{@"id":@"1",@"name":@"A班"},@{@"id":@"2",@"name":@"B班"},@{@"id":@"3",@"name":@"C班"}];
+        _classList = @[@{@"id":@"1",@"name":@"初1992级102班"},@{@"id":@"2",@"name":@"初1992级103班"},@{@"id":@"3",@"name":@"初1992级104班"},@{@"id":@"4",@"name":@"初1992级105班"},@{@"id":@"5",@"name":@"高1995级199班(高一高二)"},@{@"id":@"6",@"name":@"高1995级200班(高一高二)"},@{@"id":@"7",@"name":@"高1995级201班(高一高二)"},@{@"id":@"8",@"name":@"高1995级202班(高一高二)"},@{@"id":@"9",@"name":@"高1995级202班(高一高二)"},@{@"id":@"10",@"name":@"高1995级204班(高一高二)"},@{@"id":@"11",@"name":@"高1995级199班(高三)"},@{@"id":@"12",@"name":@"高1995级200班(高三)"},@{@"id":@"13",@"name":@"高1995级201班(高三)"},@{@"id":@"14",@"name":@"高1995级202班(高三)"},@{@"id":@"15",@"name":@"高1995级203班(高三)"},@{@"id":@"16",@"name":@"高1995级203班(高三)"}];
     }
     return _classList;
 }
