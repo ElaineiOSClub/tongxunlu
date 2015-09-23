@@ -73,6 +73,8 @@ static NSString *const cellID = @"cellID";
     
     if ([dict.allValues[0] isEqualToString:@"电话"]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;

@@ -76,8 +76,8 @@
                                 <action selector="loginClick:" destination="-1" eventType="touchUpInside" id="Vik-xD-udn"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用账号和密码登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR3-wS-WzC">
-                            <rect key="frame" x="197" y="20" width="207" height="28"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="武冈二中92-95届同学通讯录" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR3-wS-WzC">
+                            <rect key="frame" x="156" y="20" width="289" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="xqG-mJ-GLf"/>
                             </constraints>

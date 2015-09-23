@@ -199,7 +199,11 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CT_Province == %@",provinceID];
             NSArray *cityList = [self.cityList filteredArrayUsingPredicate:predicate];
             
+            if (row >= cityList.count) {
+                row = cityList.count - 1;
+            }
             return cityList[row][@"CT_Name"];
+            
         }
     }
     

@@ -122,7 +122,7 @@ static NSString * const cellID = @"cellID";
 - (NSArray *)titleList
 {
     if (!_titleList) {
-        _titleList = @[@{@"U_Phone":@"电话"},@{@"U_Birthday":@"生日"},@{@"U_Sex":@"性别"},@{@"PR_Name":@"省"},@{@"CT_Name":@"城市"},@{@"C_Name":@"班级"},@{@"U_CurrentAdress":@"当前地址"},@{@"U_Email":@"邮箱"},@{@"U_Job":@"职业"},@{@"U_QQ":@"QQ"},@{@"U_WeChat":@"微信"}];
+        _titleList = @[@{@"U_Phone":@"电话"},@{@"U_Birthday":@"年龄"},@{@"U_Sex":@"性别"},@{@"PR_Name":@"省"},@{@"CT_Name":@"城市"},@{@"C_Name":@"班级"},@{@"U_CurrentAdress":@"当前地址"},@{@"U_Email":@"邮箱"},@{@"U_Job":@"职业"},@{@"U_QQ":@"QQ"},@{@"U_WeChat":@"微信"}];
     }
     return _titleList;
 }
