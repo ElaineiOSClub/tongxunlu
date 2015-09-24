@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>FFAB3218-5318-41F8-8C24-186EA7F619C1</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>tongxunlu</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8FFBD738355FAD0F02BCA788DBE698BFEE0DF503</key>
 		<string>https://github.com/ElaineiOSClub/tongxunlu.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>tongxunlu/tongxunlu.xcodeproj/project.xcworkspace</string>
+	<string>tongxunlu/tongxunlu.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8FFBD738355FAD0F02BCA788DBE698BFEE0DF503</key>

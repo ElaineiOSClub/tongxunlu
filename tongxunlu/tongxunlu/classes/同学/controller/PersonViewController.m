@@ -117,6 +117,17 @@ static NSString * const cellID = @"cellID";
     return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        NSDictionary *dict = self.titleList[indexPath.row];
+
+        NSString *allString = [NSString stringWithFormat:@"tel:%@",[_model valueForKeyPath:dict.allKeys[0]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:allString]];
+
+    }
+}
+
 
 #pragma mark - lazy
 - (NSArray *)titleList
