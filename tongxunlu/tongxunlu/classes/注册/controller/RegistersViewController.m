@@ -68,6 +68,8 @@
     self.C_NameField.inputView = self.classPicker;
     
     self.registerBtn.layer.cornerRadius = 4;
+    
+ 
 
     
 }
@@ -184,6 +186,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+   
     if (pickerView == self.sexPicker) {
         return self.sexList[row];
     } else if(pickerView == self.classPicker) {
@@ -191,17 +194,21 @@
     }else {
         if (component == 0) {
             NSDictionary *provinceDict = self.provinceList[row];
+             MLog(@"%@",provinceDict[@"PR_Name"]);
             return provinceDict[@"PR_Name"];
-        } else {
-            NSInteger rows = [pickerView selectedRowInComponent:0];
-            NSDictionary *provinceDict = self.provinceList[rows];
-            NSString *provinceID = provinceDict[@"PR_Id"];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CT_Province == %@",provinceID];
-            NSArray *cityList = [self.cityList filteredArrayUsingPredicate:predicate];
-            
-            return cityList[row][@"CT_Name"];
+        }
+        else {
+//            NSInteger rows = [pickerView selectedRowInComponent:0];
+//            NSDictionary *provinceDict = self.provinceList[rows];
+//            NSString *provinceID = provinceDict[@"PR_Id"];
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CT_Province == %@",provinceID];
+//            NSArray *cityList = [self.cityList filteredArrayUsingPredicate:predicate];
+//            MLog(@"%@",cityList[row][@"CT_Name"]);
+//            return cityList[row][@"CT_Name"];
+            return @"11";
         }
     }
+    
     
 }
 
